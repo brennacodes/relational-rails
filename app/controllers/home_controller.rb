@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @agencies = Agency.all
+    @cases = Case.all
   end
 end

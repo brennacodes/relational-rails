@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_06_035147) do
+ActiveRecord::Schema.define(version: 2022_07_06_040837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,4 +25,16 @@ ActiveRecord::Schema.define(version: 2022_07_06_035147) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cases", force: :cascade do |t|
+    t.string "subject"
+    t.string "uid"
+    t.boolean "active"
+    t.integer "active_leads"
+    t.bigint "agency_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agency_id"], name: "index_cases_on_agency_id"
+  end
+
+  add_foreign_key "cases", "agencies"
 end
