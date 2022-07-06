@@ -1,0 +1,35 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+  <div class="row">
+    <div class="container-fluid" style="position:relative; top: 5px; left: 20px;">
+      <div aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a href="/articles">Divisions</a></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<h1 align="center">All Divisions</h1>
+
+
+<div class="container">
+  <div class="d-grid gap-3">
+    <% @divisions.each do |division| %>
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to division.name %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">Address: <%= division.address %></h6>
+              <p class="card-text">Currently active cases: <%= %></p>
+              <a href="<= division_path %>" class="btn btn-primary">View Division</a>
+    
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
