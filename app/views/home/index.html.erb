@@ -21,9 +21,9 @@
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><%= link_to one_case.id, one_case %></h5>
-              <p class="card-text"><%= truncate(one_case.subject, length: 100, omission: '...') %>.</p>
-              <a href="<%= one_case_path(one_case) %>" class="btn btn-primary">View Case</a>
+              <h5 class="card-title"><%= link_to one_case.subject, one_case %></h5>
+              <p class="card-text"><%= truncate(one_case.agency.name, length: 100, omission: '...') %>.</p>
+              <a href="/cases/#{one_case.id}" class="btn btn-primary">View Case</a>
             </div>
           </div>
         </div>

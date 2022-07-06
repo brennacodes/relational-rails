@@ -3,5 +3,7 @@ Rails.application.routes.draw do
 
   get '/agencies', to: 'agencies#index'
   get '/agencies/:id', to: 'agencies#show'
+  get '/cases', to: 'cases#index'
+  get '/cases/:id', to: 'cases#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
