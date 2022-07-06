@@ -1,0 +1,43 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+  <div class="row">
+    <div class="container-fluid" style="position:relative; top: 5px; left: 20px;">
+      <div aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a href="/articles">Agencies</a></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<h1 align="center">Latest Cases</h1>
+
+<div class="container">
+  <div class="d-grid gap-3">
+    <% @cases.each do |one_case| %>
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to one_case.title, one_case %></h5>
+              <p class="card-text"><%= truncate(one_case.body, length: 100, omission: '...') %>.</p>
+              <a href="<%= one_case_path(one_case) %>" class="btn btn-primary">View Case Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <div class="sticky-bottom">
+  <div class="d-grid p-5 d-md-flex justify-content-md-end">
+      <a href="<%= show_agency_path %>" type="button" class="btn btn-outline-primary" style="position: fixed; bottom: 20px; right: 20px;">View Agency</a>
+    </div>
+  </div>
+</div>
