@@ -15,7 +15,7 @@ RSpec.describe "divisions index page", type: :feature do
                                  num_active_cases: 122,
                                  is_federal: false)
 
-    visit "/divions"
+    visit "/divisions"
 
     expect(page).to have_content(division_1.name)
     expect(page).to have_content("Address: #{division_1.address}")
