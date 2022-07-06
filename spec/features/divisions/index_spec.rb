@@ -1,5 +1,3 @@
-# when i visit /parents
-# i see the name of each record in the system
 require 'rails_helper'
 
 RSpec.describe "divisions index page", type: :feature do
