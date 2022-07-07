@@ -15,16 +15,16 @@
   </thead>
 
   <tbody>
-    <% @cases.each do |case| %>
+    <% @cases.each do |thing| %>
       <tr>
-        <td><%= case.subject %></td>
-        <td><%= case.uid %></td>
-        <td><%= case.active %></td>
-        <td><%= case.active_leads %></td>
-        <td><%= case.department %></td>
-        <td><%= link_to 'Show', case %></td>
-        <td><%= link_to 'Edit', edit_case_path(case) %></td>
-        <td><%= link_to 'Destroy', case, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= thing.subject %></td>
+        <td><%= thing.uid %></td>
+        <td><%= thing.active %></td>
+        <td><%= thing.active_leads %></td>
+        <td><%= thing.department %></td>
+        <td><%= link_to 'Show', thing %></td>
+        <td><%= link_to 'Edit', edit_case_path(thing) %></td>
+        <td><%= link_to 'Destroy', thing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

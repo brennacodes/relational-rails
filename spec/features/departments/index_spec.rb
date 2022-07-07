@@ -16,8 +16,8 @@ RSpec.describe "divisions index page", type: :feature do
     visit "/departments"
 
     expect(page).to have_content(department_1.name)
-    expect(page).to have_content("Address: #{department_1.address}")
+    expect(page).to have_content("#{department_1.address}")
     expect(page).to have_content(department_2.name)
-    expect(page).to have_content("Address: #{department_2.address}")
+    expect(page).to have_content("#{department_2.address}")
   end
 end

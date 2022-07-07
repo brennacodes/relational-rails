@@ -5,5 +5,4 @@ class Department < ApplicationRecord
   validates_presence_of :address
   validates_presence_of :jurisdiction
   validates_presence_of :active_cases
-  
 end
