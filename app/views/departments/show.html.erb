@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @department.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @department.address %>
+</p>
+
+<p>
+  <strong>Jurisdiction:</strong>
+  <%= @department.jurisdiction %>
+</p>
+
+<p>
+  <strong>Active cases:</strong>
+  <%= @department.active_cases %>
+</p>
+
+<p>
+  <strong>Is federal:</strong>
+  <%= @department.is_federal %>
+</p>
+
+<%= link_to 'Edit', edit_department_path(@department) %> |
+<%= link_to 'Back', departments_path %>

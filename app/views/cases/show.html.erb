@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @case.subject %>
+</p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @case.uid %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @case.active %>
+</p>
+
+<p>
+  <strong>Active leads:</strong>
+  <%= @case.active_leads %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @case.department %>
+</p>
+
+<%= link_to 'Edit', edit_case_path(@case) %> |
+<%= link_to 'Back', cases_path %>
