@@ -15,7 +15,7 @@ RSpec.describe "cases/show", type: :view do
     render
     expect(rendered).to match(/Subject/)
     expect(rendered).to match(/Uid/)
-    expect(rendered).to match(/false/)
+    expect(rendered).to match(/true/)
     expect(rendered).to match(/2/)
     expect(rendered).to match(//)
   end
