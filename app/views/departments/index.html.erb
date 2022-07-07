@@ -22,6 +22,7 @@
         <td><%= department.jurisdiction %></td>
         <td><%= department.active_cases %></td>
         <td><%= department.is_federal %></td>
+        <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
