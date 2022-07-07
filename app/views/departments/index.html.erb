@@ -17,14 +17,11 @@
   <tbody>
     <% @departments.each do |department| %>
       <tr>
-        <td><%= department.name %></td>
+        <td><%= link_to department.name, department %></td>
         <td><%= department.address %></td>
         <td><%= department.jurisdiction %></td>
         <td><%= department.active_cases %></td>
         <td><%= department.is_federal %></td>
-        <td><%= link_to 'Show', department %></td>
-        <td><%= link_to 'Edit', edit_department_path(department) %></td>
-        <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
