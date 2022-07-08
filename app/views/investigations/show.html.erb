@@ -22,7 +22,8 @@
 
 <p>
   <strong>Department:</strong>
-  <%= @investigation.department.name %>
+  require 'pry'; binding.pry
+  <%= link_to "#{@investigation.department.name}", department_path %>
 </p>
 
 <%= link_to 'Edit', edit_investigation_path(@investigation) %> |
