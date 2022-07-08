@@ -11,7 +11,7 @@ RSpec.describe "departments index page", type: :feature do
                                       address: "321 Pearl Street, Boulder, CO 12345",
                                       jurisdiction: "municipal",
                                       active_cases: 122,
-                                      is_federal: false)
+                                      is_federal: true)
 
     visit "/departments"
 

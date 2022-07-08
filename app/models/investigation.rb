@@ -5,5 +5,4 @@ class Investigation < ApplicationRecord
   validates_uniqueness_of :uid
   validates_associated :department
   validates :active, inclusion: [false, true]
-  
 end
