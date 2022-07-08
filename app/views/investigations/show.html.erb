@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @investigation.subject %>
+</p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @investigation.uid %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @investigation.active %>
+</p>
+
+<p>
+  <strong>Active leads:</strong>
+  <%= @investigation.active_leads %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @investigation.department.name %>
+</p>
+
+<%= link_to 'Edit', edit_investigation_path(@investigation) %> |
+<%= link_to 'Back', investigations_path %>
+
+<p><strong><%= link_to 'Delete', @investigation, method: :delete, data: { confirm: 'Are you sure?' } %></strong></p>
