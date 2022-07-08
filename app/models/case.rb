@@ -1,4 +1,4 @@
-class Case < ApplicationRecord
+class Investigation < ApplicationRecord
   belongs_to :department
 
   validates_presence_of :subject
