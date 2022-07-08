@@ -4,7 +4,7 @@ RSpec.describe "investigations show page", type: :feature do
   let!(:fbi) {Department.create!(name: 'Federal Bureau of Investigations', 
                                  address: "010 Federal Way, Washington D.C. 80989", 
                                  jurisdiction: "United States of America", 
-                                 active_investigations: 964, 
+                                 active_cases: 964, 
                                  is_federal: true)
               }
   let!(:case_1) {fbi.investigations.create!(subject: 'Missing Person', 
