@@ -6,6 +6,6 @@ RSpec.describe Department, type: :model do
   end
 
   describe 'relationships' do
-    it { should have_many :cases }
+    it { should have_many :investigations }
   end
 end
