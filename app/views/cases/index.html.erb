@@ -17,14 +17,12 @@
   <tbody>
     <% @cases.each do |thing| %>
       <tr>
-        <td><%= thing.subject %></td>
+        <td><%= link_to thing.subject, thing %></td>
         <td><%= thing.uid %></td>
         <td><%= thing.active %></td>
         <td><%= thing.active_leads %></td>
-        <td><%= thing.department %></td>
-        <td><%= link_to 'Show', thing %></td>
-        <td><%= link_to 'Edit', edit_case_path(thing) %></td>
-        <td><%= link_to 'Destroy', thing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= thing.department.name %></td>
+        <td><%= link_to 'Delete', thing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

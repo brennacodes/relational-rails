@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "divisions index page", type: :feature do
-  it "can see all divisions names" do
+RSpec.describe "departments index page", type: :feature do
+  it "can see departments name and address" do
     department_1 = Department.create!(name: "Federal Bureau of Investigations",
                                       address: "123 Wanted Way, Washington D.C. 01020",
                                       jurisdiction: "federal",
@@ -19,5 +19,10 @@ RSpec.describe "divisions index page", type: :feature do
     expect(page).to have_content("#{department_1.address}")
     expect(page).to have_content(department_2.name)
     expect(page).to have_content("#{department_2.address}")
+  end
+
+  it "can see all departments names" do
+    visit "/departments"
+    expect(page).to have_content("#{Department}")
   end
 end

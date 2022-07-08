@@ -22,8 +22,10 @@
 
 <p>
   <strong>Department:</strong>
-  <%= @case.department %>
+  <%= @case.department.name %>
 </p>
 
 <%= link_to 'Edit', edit_case_path(@case) %> |
 <%= link_to 'Back', cases_path %>
+
+<p><strong><%= link_to 'Delete', @case, method: :delete, data: { confirm: 'Are you sure?' } %></strong></p>
