@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :departments
+  get '/departments', to: 'departments#index', as: 'departments'
+  post '/departments', to: 'departments#create'                   
+  get '/departments/new', to: 'departments#new', as: 'new_department'
+  get '/departments/:id/edit', to: 'departments#edit', as: 'edit_department'
+  get '/departments/:id', to: 'departments#show', as: 'department'
+  patch '/departments/:id', to: 'departments#update'
+  put '/departments/:id', to: 'departments#update'
+  delete '/departments/:id', to: 'departments#destroy'
 
   get '/investigations', to: 'investigations#index', as: 'investigations'
   post '/investigations', to: 'investigations#create'                   
