@@ -16,5 +16,7 @@ Rails.application.routes.draw do
   patch '/investigations/:id', to: 'investigations#update'
   put '/investigations/:id', to: 'investigations#update'
   delete '/investigations/:id', to: 'investigations#destroy'
+
+  get '/departments/:id/investigations', to: 'department_cases#index', as: 'department_cases'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
