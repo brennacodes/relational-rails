@@ -3,7 +3,7 @@ class DepartmentsController < ApplicationController
 
   # GET /departments
   def index
-    @departments = Department.all
+    @departments = Department.sort_created_descend
   end
 
   # GET /departments/1
