@@ -13,6 +13,7 @@ class InvestigationsController < ApplicationController
   # GET /investigations/new
   def new
     @investigation = Investigation.new
+    @department_names = Department.pluck(:name)
   end
 
   # GET /investigations/1/edit
@@ -22,7 +23,6 @@ class InvestigationsController < ApplicationController
   # POST /investigations or /investigations.json
   def create
     @investigation = Investigation.new(investigation_params)
-
     respond_to do |format|
       if @investigation.save
         format.html { redirect_to investigation_url(@investigation), notice: "Case was successfully created." }

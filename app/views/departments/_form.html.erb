@@ -1,42 +1,73 @@
-<%= form_with(model: department, local: true) do |form| %>
-  <% if department.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(department.errors.count, "error") %> prohibited this department from being saved:</h2>
-
-      <ul>
-      <% department.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_with model: department do |form| %>
+    <div class="input-group">
+        <%= form.text_field :name, { class: "form-control", id: "text-input-area" } %></p>
+        <%= form.label :name, { class: "input-group-text"  } %><br>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+    <% department.errors.full_messages_for(:name).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_area :address %>
-  </div>
+    <div class="input-group">
+        <%= form.label :address, { class: "input-group-text" } %><br>
+        <%= form.text_area :address, { class: "form-control", id: "text-input-area" } %></p>
+    </div>
 
-  <div class="field">
-    <%= form.label :jurisdiction %>
-    <%= form.text_field :jurisdiction %>
-  </div>
+    <% department.errors.full_messages_for(:address).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
 
-  <div class="field">
-    <%= form.label :active_cases %>
-    <%= form.number_field :active_cases %>
-  </div>
+    <div class="input-group">
+        <%= form.label :jurisdiction, { class: "input-group-text" } %><br>
+        <%= form.text_field :jurisdiction, { class: "form-control", id: "text-input-area" } %></p>
+    </div>
 
-  <div class="field">
-    <%= form.label :is_federal %>
-    <%= form.check_box :is_federal %>
-  </div>
+    <% department.errors.full_messages_for(:jurisdiction).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="input-group">
+        <%= form.label :active_cases, { class: "input-group-text" } %><br>
+        <%= form.text_field :active_cases, { class: "form-control", id: "text-input-area" } %></p>
+    </div>
+
+    <% department.errors.full_messages_for(:active_cases).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+
+    <div class="input-group">
+      <label class="input-group-text" for="inputGroupSelect01">Is Federal?</label>
+        <%= form.select :is_federal, [["True", true], ["False", false]], { class: "form-select", id: "inputGroupSelect"} %>
+    </div>
+
+    <% department.errors.full_messages_for(:is_federal).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
   </div>
+        <div class="container">
+          <div class="row g-5">
+              <div class="col" align="left">
+                  <%= form.button :submit, type: "submit", class: "btn btn-primary" %>
+              </div>
+
+              <div class="col" align="center">
+                <%= form.button :cancel, type: "reset", class: "btn btn-outline-secondary" %>
+              </div>
+
+              <div class="col" align="right">
+                  <a href="<%= departments_path %>" type="button" class="btn btn-outline-primary">Go Back</a>
+              </div>
+          </div>
+        </div>
+
 <% end %>
