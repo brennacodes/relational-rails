@@ -1,8 +1,8 @@
   <%= form_with model: department_cases do |form| %>
     <div class="container">
       <div class="input-group">
-          <%= form.text_field :subject, { class: "form-control", id: "text-input-area" } %></p>
           <%= form.label :subject, { class: "input-group-text"  } %><br>
+          <%= form.text_field :subject, { class: "form-control", id: "text-input-area" } %></p>
       </div>
 
       <% @department.errors.full_messages_for(:subject).each do |message| %>
