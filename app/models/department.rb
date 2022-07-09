@@ -8,4 +8,8 @@ class Department < ApplicationRecord
   def self.sort_created_descend
     order(:created_at).reverse_order
   end
+
+  def child_count
+    self.investigations.count
+  end
 end

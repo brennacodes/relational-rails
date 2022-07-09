@@ -38,7 +38,7 @@ RSpec.describe "departments show page", type: :feature do
   end
 
   it "lists the number of active cases" do
-    expect(page).to have_content("Active Cases: #{fbi.active_cases.count}")
+    expect(page).to have_content("Active cases: 964")
   end
 
 end

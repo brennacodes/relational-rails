@@ -1,31 +1,69 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Wetective</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="<%= departments_path %>">Departments</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= investigations_path %>">Investigations</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+</nav>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Subject:</strong>
-  <%= @investigation.subject %>
-</p>
+<h1 align="center">Investigation</h1>
 
-<p>
-  <strong>Uid:</strong>
-  <%= @investigation.uid %>
-</p>
+<div class="container">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Subject: </th>
+      <th scope="col">UID: </th>
+      <th scope="col">Active: </th>
+      <th scope="col">Active leads: </th>
+      <th scope="col">Department: </th>
+      <th scope="col">Date Created: </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>Active:</strong>
-  <%= @investigation.active %>
-</p>
+  <tbody>
+      <tr>
+        <td scope="row"><%= @investigation.subject %></td>
+        <td><%= @investigation.uid %></td>
+        <td><%= @investigation.active %></td>
+        <td><%= @investigation.active_leads %></td>
+        <td><%= link_to "#{@investigation.department.name}", department_path %></td>
+        <td><%= @investigation.created_at %></td>
+        <td><%= link_to 'Edit', edit_investigation_path(@investigation) %></td>
+        <td><%= link_to 'Delete', @investigation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  </tbody>
+</table>
+</div>
 
-<p>
-  <strong>Active leads:</strong>
-  <%= @investigation.active_leads %>
-</p>
+<br>
 
-<p>
-  <strong>Department:</strong>
-  <%= link_to "#{@investigation.department.name}", department_path %>
-</p>
+<div class="container">
+    <div class="d-grid d-md-flex">
+      <a href="<%= new_investigation_path %>" type="button" class="btn btn-outline-primary">New Investigation</a>
+    </div>
+</div>
 
-<%= link_to 'Edit', edit_investigation_path(@investigation) %> |
-<%= link_to 'Back', investigations_path %>
-
-<p><strong><%= link_to 'Delete', @investigation, method: :delete, data: { confirm: 'Are you sure?' } %></strong></p>
+<p id="notice"><%= notice %></p>
+<br>
+<div class="container">
+  <a class="btn btn-primary" href="<%= investigations_path %>" role="button">Back</a>
+</div>
