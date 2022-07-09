@@ -4,4 +4,8 @@ class Investigation < ApplicationRecord
   validates_presence_of :subject, :uid, :active, :active_leads
   validates_uniqueness_of :uid
   validates_associated :department
+
+  def has_department?
+    !self.department.nil?
+  end
 end

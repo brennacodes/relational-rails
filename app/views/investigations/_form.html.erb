@@ -24,7 +24,12 @@
 
       <div class="input-group">
           <%= form.label :department, { class: "input-group-text", for: "inputGroupSelect01" } %><br>
-          <%= form.select :department, @department_names,  { class: "input-group-text", for: "inputGroupSelect01" } %><br>
+          <%= if @investigation.has_department %>
+            <%= form.select :department, @department_names, { class: "form-select", id: "inputGroupSelect01" } %>
+          <% else %>
+            <div class="visually-hidden"><%= form.text_field :department, { class: "form-select", id: "inputGroupSelect01", value: @investigation.department_id } %></div>
+          <% end %>
+        
       </div>
 
     <% @investigation.errors.full_messages_for(:department).each do |message| %>

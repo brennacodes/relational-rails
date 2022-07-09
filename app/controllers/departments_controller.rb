@@ -35,9 +35,9 @@ class DepartmentsController < ApplicationController
   def update
 
       if @department.update(department_params)
-        format.html { redirect_to department_url(@department), notice: "Department was successfully updated." }
+        redirect_to department_url(@department)
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        render :edit, status: :unprocessable_entity
       end
     
   end
