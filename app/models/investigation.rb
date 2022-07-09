@@ -5,7 +5,7 @@ class Investigation < ApplicationRecord
   validates_uniqueness_of :uid
   validates_associated :department
 
-  def has_department?
-    !self.department.nil?
+  def self.sort_created_descend
+    order(:created_at).reverse_order
   end
 end
