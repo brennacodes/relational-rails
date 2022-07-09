@@ -19,7 +19,6 @@ RSpec.describe "departments index page", type: :feature do
   end
 
   it "can see departments name and address" do
-
     expect(page).to have_content(@department_1.name)
     expect(page).to have_content("#{@department_1.address}")
     expect(page).to have_content(@department_2.name)

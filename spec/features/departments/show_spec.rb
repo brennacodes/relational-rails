@@ -25,12 +25,12 @@ RSpec.describe "departments show page", type: :feature do
     expect(page).to have_content(fbi.address)
     expect(page).to have_content(fbi.jurisdiction)
     expect(page).to have_content(fbi.active_cases)
-    expect(page).to have_no_content(upd.name)
-    expect(page).to have_no_content(upd.address)
+    expect(page).not_to have_content(upd.name)
+    expect(page).not_to have_content(upd.address)
   end
 
   it "links to a table of all associated investigations" do
-    click_link "View Active Cases"
+    click_button "View All Cases"
     expect(current_path).to eq("/departments/#{fbi.id}/investigations")
     # expect(page).to have_content(fbi.name)
     # expect(page).to have_content("Missing Person")
