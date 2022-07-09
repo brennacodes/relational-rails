@@ -14,7 +14,8 @@
       <th scope="col">Active cases: </th>
       <th scope="col">Is federal: </th>
       <th scope="col">Date Created: </th>
-      <th scope="col">  </th>
+      <th scope="col">Edit: </th>
+      <th scope="col">Delete: </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -28,8 +29,8 @@
         <td><%= department.active_cases %></td>
         <td><%= department.is_federal %></td>
         <td><%= department.created_at %></td>
-        <td><%= link_to 'Edit', edit_department_path(department.id) %></td>
-        <td><%= link_to 'Delete', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Edit', edit_department_path(department.id) %></td>
+        <td><%= button_to 'Delete', department_path(department), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

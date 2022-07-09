@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   delete '/departments/:id', to: 'departments#destroy'
 
   get '/departments/:id/investigations', to: 'department_cases#index', as: 'department_cases'
-  post '/departments/:id/investigations', to: 'department_cases#create'
   get '/departments/:id/investigations/new', to: 'department_cases#new', as: 'new_dept_investigation'
+  post '/departments/:id/investigations', to: 'department_cases#create'
   # get '/departments/:id/investigations', to: 'department_cases#show', as: 'show_department_cases'
 
   get '/investigations', to: 'investigations#index', as: 'investigations'
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/investigations/:id', to: 'investigations#show', as: 'investigation'
   patch '/investigations/:id', to: 'investigations#update'
   put '/investigations/:id', to: 'investigations#update'
-  delete '/investigations/:id', to: 'investigations#destroy'
+  delete '/investigations/:id', to: 'investigations#destroy', as: 'delete_investigation'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -14,7 +14,8 @@
       <th scope="col">Active leads: </th>
       <th scope="col">Department: </th>
       <th scope="col">Date Created: </th>
-      <th scope="col"> </th>
+      <th scope="col">Edit:</th>
+      <th scope="col">Delete:</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -28,7 +29,8 @@
         <td><%= investigation.active_leads %></td>
         <td><%= investigation.department.name %></td>
         <td><%= investigation.created_at %></td>
-        <td><%= link_to 'Edit', edit_investigation_path(investigation.id) %> <%= link_to 'Delete', investigation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Edit', edit_investigation_path(investigation.id) %></td>
+        <td><%= button_to 'Delete', investigation_path(investigation), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

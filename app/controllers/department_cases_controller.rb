@@ -13,9 +13,13 @@ class DepartmentCasesController < ApplicationController
     @department = Department.find(params[:id])
     @investigation = @department.investigations.new(investigation_params)
     if @investigation.save
-      redirect_to department_url(@department)
+      redirect_to department_cases_url(@department)
+      # render :show, status: :created, location: @department 
     else
-      render :new, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
+  end
+
+  def edit
   end
 end

@@ -13,19 +13,19 @@ class InvestigationsController < ApplicationController
   # GET /investigations/new
   def new
     @investigation = Investigation.new
-    @department_names = Department.pluck(:name)
   end
-
+  
   # GET /investigations/1/edit
   def edit
   end
-
+  
   # POST /investigations or /investigations.json
   def create
     @investigation = Investigation.new(investigation_params)
+    @department_names = Department.pluck(:name)
       if @investigation.save
-        redirect_to investigation_url(@investigation), notice: "Case was successfully created." 
-        render :show, status: :created, location: @investigation 
+        redirect_to investigation_url(@investigation)
+        # render :show, status: :created, location: @investigation 
       else
         render :new, status: :unprocessable_entity 
       end
@@ -42,12 +42,9 @@ class InvestigationsController < ApplicationController
 
   # DELETE /investigations/1 or /investigations/1.json
   def destroy
+    @investigation = Investigation.find(params[:id])
     @investigation.destroy
-
-    respond_to do |format|
-      format.html { redirect_to investigations_url, notice: "Case was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to investigations_path, notice: "Case was successfully destroyed." 
   end
 
   private
