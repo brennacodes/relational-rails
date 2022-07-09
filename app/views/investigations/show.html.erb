@@ -26,7 +26,7 @@
         <td><%= @investigation.active_leads %></td>
         <td><%= link_to "#{@investigation.department.name}", department_path %></td>
         <td><%= @investigation.created_at %></td>
-        <td><%= link_to 'Edit', edit_investigation_path(@investigation) %></td>
+        <td><%= link_to 'Edit', edit_investigation_path(@investigation.id) %></td>
         <td><%= link_to 'Delete', @investigation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   </tbody>

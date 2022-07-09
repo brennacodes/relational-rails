@@ -22,34 +22,26 @@ class DepartmentsController < ApplicationController
   # POST /departments
   def create
     @department = Department.new(department_params)
-
       if @department.save
         redirect_to department_url(@department)
       else
         render :new, status: :unprocessable_entity 
       end
-
   end
 
   # PATCH/PUT /departments/1 
   def update
-
       if @department.update(department_params)
         redirect_to department_url(@department)
       else
         render :edit, status: :unprocessable_entity
       end
-    
   end
 
   # DELETE /departments/1 
   def destroy
     @department.destroy
-
-
-    format.html { redirect_to departments_url, notice: "Department was successfully destroyed." }
-     
-    
+    redirect_to departments_url, notice: "Department was successfully destroyed." 
   end
 
   private

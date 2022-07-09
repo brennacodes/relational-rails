@@ -23,28 +23,21 @@ class InvestigationsController < ApplicationController
   # POST /investigations or /investigations.json
   def create
     @investigation = Investigation.new(investigation_params)
-    respond_to do |format|
       if @investigation.save
-        format.html { redirect_to investigation_url(@investigation), notice: "Case was successfully created." }
-        format.json { render :show, status: :created, location: @investigation }
+        redirect_to investigation_url(@investigation), notice: "Case was successfully created." 
+        render :show, status: :created, location: @investigation 
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @investigation.errors, status: :unprocessable_entity }
+        render :new, status: :unprocessable_entity 
       end
-    end
   end
 
   # PATCH/PUT /investigations/1 or /investigations/1.json
   def update
-    respond_to do |format|
       if @investigation.update(investigation_params)
-        format.html { redirect_to investigation_url(@investigation), notice: "Case was successfully updated." }
-        format.json { render :show, status: :ok, location: @investigation }
+        redirect_to investigation_url(@investigation)
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @investigation.errors, status: :unprocessable_entity }
+        render :edit, status: :unprocessable_entity 
       end
-    end
   end
 
   # DELETE /investigations/1 or /investigations/1.json
