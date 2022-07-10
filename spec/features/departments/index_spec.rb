@@ -60,4 +60,13 @@ RSpec.describe "departments index page", type: :feature do
     ordered = Department.sort_created_descend
     expect(ordered).to eq([@department_2, @department_1])
   end
+
+  it "has a link to create a new department" do
+    expect(page).to have_link('New Department', href: '/departments/new')
+  end
+
+  it "opens a new department page" do
+    click_on 'New Department'
+    expect(current_path).to eq('/departments/new')
+  end
 end
