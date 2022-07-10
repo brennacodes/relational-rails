@@ -43,7 +43,7 @@ RSpec.describe "investigations index page", type: :feature do
   end
 
   describe 'page features' do
-    it 'only shows active investigations for a specific department' do
+    it 'only shows investigations for a specific department' do
       expect(page).to have_content(@case_1.subject)
       expect(page).to have_content(@case_1.uid)
       expect(page).not_to have_content(@case_2.subject)

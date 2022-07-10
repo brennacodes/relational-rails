@@ -52,5 +52,4 @@ RSpec.describe "departments index page", type: :feature do
     ordered = Department.sort_created_descend
     expect(ordered).to eq([@department_2, @department_1])
   end
-
 end
