@@ -1,46 +1,41 @@
 class InvestigationsController < ApplicationController
   before_action :set_investigation, only: %i[ show edit update destroy ]
 
-  # GET /investigations or /investigations.json
   def index
     @investigations = Investigation.all
   end
 
-  # GET /investigations/1 or /investigations/1.json
   def show
   end
 
-  # GET /investigations/new
+
   def new
     @investigation = Investigation.new
   end
   
-  # GET /investigations/1/edit
   def edit
+    @investigation = Investigation.find(params[:id])
   end
   
-  # POST /investigations or /investigations.json
   def create
     @investigation = Investigation.new(investigation_params)
     @department_names = Department.pluck(:name)
       if @investigation.save
         redirect_to investigation_url(@investigation)
-        # render :show, status: :created, location: @investigation 
       else
         render :new, status: :unprocessable_entity 
       end
   end
 
-  # PATCH/PUT /investigations/1 or /investigations/1.json
   def update
+    @investigation = Investigation.find(params[:id])
       if @investigation.update(investigation_params)
-        redirect_to investigation_url(@investigation)
+        redirect_to investigation_url
       else
         render :edit, status: :unprocessable_entity 
       end
   end
 
-  # DELETE /investigations/1 or /investigations/1.json
   def destroy
     @investigation = Investigation.find(params[:id])
     @investigation.destroy

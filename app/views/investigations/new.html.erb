@@ -4,3 +4,76 @@
 
 <%= render 'form', investigation: @investigation %>
 
+<%= form_with model: investigation do |form| %>
+  <div class="container">
+    <div class="input-group">
+        <%= form.label :subject, { class: "input-group-text"  } %><br>
+        <%= form.text_field :subject, { class: "form-control", id: "text-input-area" } %></p>
+    </div>
+
+    <% @investigation.errors.full_messages_for(:subject).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+
+    <div class="input-group">
+        <%= form.label :uid, { class: "input-group-text" } %><br>
+        <%= form.text_area :uid, { class: "form-control", id: "text-input-area" } %></p>
+    </div>
+
+    <% @investigation.errors.full_messages_for(:uid).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+
+      <div class="input-group">
+          <%= form.label :department, { class: "input-group-text", for: "inputGroupSelect01" } %><br>
+          <%= form.text_field :department, { class: "form-select", id: "inputGroupSelect01" } %> </div>
+      </div>
+
+    <% @investigation.errors.full_messages_for(:department).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+
+    <div class="input-group">
+        <%= form.label :active_leads, { class: "input-group-text" } %><br>
+        <%= form.text_field :active_leads, { class: "form-control", id: "text-input-area" } %></p>
+    </div>
+
+    <% @investigation.errors.full_messages_for(:active_leads).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+
+    <div class="input-group">
+      <label class="input-group-text" for="inputGroupSelect01">Active?</label>
+        <%= form.select :active, [["True", true], ["False", false]], { class: "form-select", id: "inputGroupSelect"} %>
+    </div>
+
+    <% @investigation.errors.full_messages_for(:active).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+        <div class="container">
+          <div class="row g-5">
+              <div class="col" align="left">
+                  <%= form.button "Save", type: :save, class: "btn btn-primary" %>
+              </div>
+
+              <div class="col" align="center">
+                <%= form.button :cancel, type: "reset", class: "btn btn-outline-secondary" %>
+              </div>
+
+              <div class="col" align="right">
+                  <%= link_to "Go Back", :back, { class: "btn btn-outline-primary"} %>
+              </div>
+          </div>
+        </div>
+<% end %>

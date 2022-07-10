@@ -34,7 +34,7 @@ RSpec.describe "departments new page", type: :feature do
     fill_in 'department[jurisdiction]', with: "United States of America"
     fill_in 'department[active_cases]', with: 964
     select 'True', from: 'department_is_federal'
-    click_on 'Submit'
+    click_button 'Save'
     expect(current_path).to eq('/departments')
   end
 end

@@ -28,8 +28,8 @@
         <td><%= @investigation.active_leads %></td>
         <td><%= link_to "#{@investigation.department.name}", department_path %></td>
         <td><%= @investigation.created_at %></td>
-        <td><%= button_to 'Edit', edit_investigation_path(@investigation.id) %></td>
-        <td><%= button_to 'Delete', @investigation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_investigation_path(@investigation.id) %></td>
+        <td><%= link_to 'Delete', @investigation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   </tbody>
 </table>
@@ -43,7 +43,6 @@
     </div>
 </div>
 
-<p id="notice"><%= notice %></p>
 <br>
 <div class="container">
   <a class="btn btn-primary" href="<%= investigations_path %>" role="button">Back</a>

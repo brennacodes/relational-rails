@@ -28,5 +28,5 @@ RSpec.describe Department, type: :model do
       created_at: "1997-01-01 00:00:00 UTC")
       ordered = Department.sort_created_descend
       expect(ordered).to eq([@department_2, @department_1])
-    end
+  end
 end
