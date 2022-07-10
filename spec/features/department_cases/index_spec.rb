@@ -64,5 +64,30 @@ RSpec.describe "investigations index page", type: :feature do
       click_on 'New Investigation'
       expect(current_path).to eq("/departments/#{@fbi.id}/investigations/new")
     end
+
+    it 'can add a new investigation for this department' do
+      expect(page).to have_link('New Investigation', href: "/departments/#{@fbi.id}/investigations/new")
+      click_on 'New Investigation'
+      expect(current_path).to eq("/departments/#{@fbi.id}/investigations/new")
+    end
+
+    it "renders a new investigation form" do
+      click_on 'New Investigation'
+      fill_in 'investigation[subject]', with: "Felony Assautl with Hot Dog"
+      fill_in 'investigation[uid]', with: "abcd1234"
+      fill_in 'investigation[active_leads]', with: 0
+      select 'False', from: 'investigation[active]'
+    end
+
+    it "renders a new investigation form" do
+      click_on 'New Investigation'
+      fill_in 'investigation[subject]', with: "Felony Assautl with Hot Dog"
+      fill_in 'investigation[uid]', with: "abcd1234"
+      fill_in 'investigation[active_leads]', with: 0
+      select 'False', from: 'investigation[active]'
+      click_on 'submit'
+      expect(current_path).to eq("/departments/#{@fbi.id}/investigations")
+      expect(page).to have_content("Felony Assautl with Hot Dog")
+    end
   end
 end
