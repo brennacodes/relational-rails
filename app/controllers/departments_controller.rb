@@ -1,47 +1,42 @@
 class DepartmentsController < ApplicationController
   before_action :set_department, only: %i[ show edit update destroy ]
 
-  # GET /departments
   def index
     @departments = Department.sort_created_descend
   end
 
-  # GET /departments/1
   def show
     @department = Department.find(params[:id])
     @investigations = Investigation.where({'department_id' => @department.id})
     @num_cases = @investigations.count
   end
 
-  # GET /departments/new
   def new
     @department = Department.new
   end
 
-  # GET /departments/1/edit
   def edit
+    @department = Department.find(params[:id])
   end
-
-  # POST /departments
+  
   def create
     @department = Department.new(department_params)
       if @department.save
-        redirect_to departments_url
+        redirect_to "/departments"
       else
         render :new, status: :unprocessable_entity 
       end
   end
 
-  # PATCH/PUT /departments/1 
   def update
+    @department = Department.find(params[:id])
       if @department.update(department_params)
-        redirect_to department_url(@department)
+        redirect_to departments_url
       else
         render :edit, status: :unprocessable_entity
       end
   end
 
-  # DELETE /departments/1 
   def destroy
     @department.destroy
     redirect_to departments_url, notice: "Department was successfully destroyed." 
