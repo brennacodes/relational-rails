@@ -9,4 +9,8 @@ class Investigation < ApplicationRecord
   def self.sort_created_descend
     order(:created_at).reverse_order
   end
+
+  def self.show_true
+    where(:active => true)
+  end
 end
