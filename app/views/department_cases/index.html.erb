@@ -28,6 +28,7 @@
           <td><%= investigation.active %></td>
           <td><%= investigation.active_leads %></td>
           <td><%= investigation.department.name %></td>
+          <td><%= investigation.department.created_at %></td>
           <td><%= button_to 'Edit', edit_investigation_path(investigation) %></td>
           <td><%= button_to 'Delete', investigation_path(investigation), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>

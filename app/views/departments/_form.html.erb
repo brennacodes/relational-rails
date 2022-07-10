@@ -1,4 +1,5 @@
 <%= form_with model: department do |form| %>
+  <div class="container">
     <div class="input-group">
         <%= form.label :name, { class: "input-group-text"  } %><br>
         <%= form.text_field :name, { class: "form-control", id: "text-input-area" } %></p>
@@ -53,21 +54,23 @@
         <%= message %>
       </div>
     <% end %>
+    </div>
   </div>
-        <div class="container">
-          <div class="row g-5">
-              <div class="col" align="left">
-                  <%= form.button :save, type: "save", class: "btn btn-primary" %>
-              </div>
 
-              <div class="col" align="center">
-                <%= form.button :cancel, type: "reset", class: "btn btn-outline-secondary" %>
-              </div>
-
-              <div class="col" align="right">
-                  <a href="<%= departments_path %>" type="button" class="btn btn-outline-primary">Go Back</a>
-              </div>
-          </div>
+  <div class="container">
+    <div class="row g-5">
+        <div class="col" align="left">
+            <%= form.button :save, type: "save", class: "btn btn-primary" %>
         </div>
+
+        <div class="col" align="center">
+          <%= form.button :cancel, type: "reset", class: "btn btn-outline-secondary" %>
+        </div>
+
+        <div class="col" align="right">
+            <a href="<%= departments_path %>" type="button" class="btn btn-outline-primary">Go Back</a>
+        </div>
+    </div>
+  </div>
 
 <% end %>
