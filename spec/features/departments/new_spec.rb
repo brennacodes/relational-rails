@@ -35,8 +35,6 @@ RSpec.describe "departments index page" do
     fill_in 'department[active_cases]', with: 964
     select 'True', from: 'department_is_federal'
     click_button 'save'
-    it { should have_http_status(:ok) }
-    it { should render_template("departments/show") }
-    it { should have_content("CIA") }
+    expect(current_path).to eq('/departments')
   end
 end
