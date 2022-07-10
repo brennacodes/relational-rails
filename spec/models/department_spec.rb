@@ -9,9 +9,11 @@ RSpec.describe Department, type: :model do
     it { should have_many :investigations }
   end
 
-  describe 'sorts by created_at - descending' do
+  describe 'displays created_at datetime information' do
     it { should have_db_column(:created_at).of_type(:datetime) }
-
+  end
+  
+  it "can see all departments listed by date created" do
     @department_1 = Department.create!(name: "Federal Bureau of Investigations",
       address: "123 Wanted Way, Washington D.C. 01020",
       jurisdiction: "federal",
@@ -24,10 +26,6 @@ RSpec.describe Department, type: :model do
       active_cases: 122,
       is_federal: true,
       created_at: "1997-01-01 00:00:00 UTC")
-
-    visit "/departments"
-    
-    it "can see all departments listed by date created" do
       ordered = Department.sort_created_descend
       expect(ordered).to eq([@department_2, @department_1])
     end
