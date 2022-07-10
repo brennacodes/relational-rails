@@ -20,6 +20,20 @@ RSpec.describe "departments show page", type: :feature do
     visit "/departments/#{fbi.id}"
   end
 
+  describe "Navbar Links" do
+    describe "Navigation should be available" do
+      it "should include links" do
+        page.should have_link('Departments')
+        page.should have_link('Investigations')
+      end
+
+      it "has links that point to the correct pages" do
+        expect(page).to have_link('Departments', href: '/departments')
+        expect(page).to have_link('Investigations', href: '/investigations')
+      end
+    end
+  end
+
   it "can see departments name and address" do
     expect(page).to have_content(fbi.name)
     expect(page).to have_content(fbi.address)
@@ -30,11 +44,9 @@ RSpec.describe "departments show page", type: :feature do
   end
 
   it "links to a table of all associated investigations" do
-    click_button "View All Cases"
-    expect(current_path).to eq("/departments/#{fbi.id}/investigations")
-    # expect(page).to have_content(fbi.name)
-    # expect(page).to have_content("Missing Person")
-    # expect(page).not_to have_content("Robbery")
+    # expect(page).to have_selector("input[type=button][value='View All Cases']")
+    click_on 'View All Cases'
+    # expect(current_path).to eq("/departments/#{fbi.id}/investigations")
   end
 
   it "lists the number of active cases" do
