@@ -56,6 +56,14 @@ RSpec.describe "departments show page", type: :feature do
   it "links to a table of all associated investigations" do
     click_on 'View All Cases'
     expect(current_path).to eq("/departments/#{fbi.id}/investigations")
+    expect(page).to have_content(case_1.subject)
+    expect(page).to have_content(case_1.uid)
+    expect(page).to have_content(case_1.active)
+    expect(page).to have_content(case_1.active_leads)
+    expect(page).to have_content(case_2.subject)
+    expect(page).to have_content(case_2.uid)
+    expect(page).to have_content(case_2.active)
+    expect(page).to have_content(case_2.active_leads)
   end
 
   it "lists the number of active cases" do
