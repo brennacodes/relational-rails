@@ -1,5 +1,5 @@
 class Department < ApplicationRecord
-  has_many :investigations
+  has_many :investigations, dependent: :delete_all
 
   validates_presence_of :name, :address, :jurisdiction, :active_cases
   validates :is_federal, inclusion: [false, true]
@@ -8,7 +8,7 @@ class Department < ApplicationRecord
     order(:created_at).reverse_order
   end
 
-  def child_count
-    self.investigations.count
+  def num_cases
+    investigations.count
   end
 end

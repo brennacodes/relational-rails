@@ -15,6 +15,14 @@ RSpec.describe "departments index page", type: :feature do
                                       active_cases: 122,
                                       is_federal: true,
                                       created_at: "1997-01-01 00:00:00 UTC")
+    @case_1 = @department_1.investigations.create!(subject: 'Missing Person', 
+                                      uid: "fbilke83792ks1001", 
+                                      active: true, 
+                                      active_leads: 345)    
+    @case_2 = @department_1.investigations.create!(subject: 'Robbery',
+                                      uid: "fb132w5azef543214533",  
+                                      active: true,
+                                      active_leads: 1)
     visit "/departments"
   end
 

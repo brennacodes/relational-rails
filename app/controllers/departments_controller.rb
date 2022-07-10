@@ -8,6 +8,9 @@ class DepartmentsController < ApplicationController
 
   # GET /departments/1
   def show
+    @department = Department.find(params[:id])
+    @investigations = Investigation.where({'department_id' => @department.id})
+    @num_cases = @investigations.count
   end
 
   # GET /departments/new

@@ -26,7 +26,7 @@
         <td scope="row"><%= link_to department.name, department %></td>
         <td><%= department.address %></td>
         <td><%= department.jurisdiction %></td>
-        <td><%= department.active_cases %></td>
+        <td><%= department.num_cases %></td>
         <td><%= department.is_federal %></td>
         <td><%= department.created_at %></td>
         <td><%= button_to 'Edit', edit_department_path(department.id) %></td>

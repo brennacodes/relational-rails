@@ -15,6 +15,16 @@ RSpec.describe "departments show page", type: :feature do
                                  active_cases: 61, 
                                  is_federal: false)
               }
+  let!(:case_1) {fbi.investigations.create!(subject: 'Missing Person',
+                                            uid: "fbilke83792ks1001",
+                                            active: true,
+                                            active_leads: 345)
+               }
+  let!(:case_2) {fbi.investigations.create!(subject: 'Robbery',
+                                            uid: "fb132w5azef543214533",
+                                            active: true,
+                                            active_leads: 1)
+                }
 
   before do
     visit "/departments/#{fbi.id}"
@@ -38,19 +48,18 @@ RSpec.describe "departments show page", type: :feature do
     expect(page).to have_content(fbi.name)
     expect(page).to have_content(fbi.address)
     expect(page).to have_content(fbi.jurisdiction)
-    expect(page).to have_content(fbi.active_cases)
+    expect(page).to have_content(fbi.num_cases)
     expect(page).not_to have_content(upd.name)
     expect(page).not_to have_content(upd.address)
   end
 
   it "links to a table of all associated investigations" do
-    # expect(page).to have_selector("input[type=button][value='View All Cases']")
     click_on 'View All Cases'
-    # expect(current_path).to eq("/departments/#{fbi.id}/investigations")
+    expect(current_path).to eq("/departments/#{fbi.id}/investigations")
   end
 
   it "lists the number of active cases" do
-    expect(page).to have_content("964")
+    expect(page).to have_content(" 2 ")
   end
 
 end

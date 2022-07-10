@@ -7,10 +7,10 @@ RSpec.describe "investigations show page", type: :feature do
                                  jurisdiction: "United States of America", 
                                  active_cases: 964, 
                                  is_federal: true)  
-   @case_1 = @fbi.investigations.create!(subject: 'Missing Person', 
-                                         uid: "fbilke83792ks1001", 
-                                         active: true, 
-                                         active_leads: 345)    
+    @case_1 = @fbi.investigations.create!(subject: 'Missing Person', 
+                                          uid: "fbilke83792ks1001", 
+                                          active: true, 
+                                          active_leads: 345)    
     @case_2 = @fbi.investigations.create!(subject: 'Robbery',
                                           uid: "fb132w5azef543214533",  
                                           active: true,

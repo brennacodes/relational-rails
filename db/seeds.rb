@@ -16,16 +16,16 @@ dea = Department.create!(name: 'Drug Enforcement Agency', address: "666 Dare Dri
 usm = Department.create!(name: 'U.S. Marshals', address: "123 Howdy Junction, Washington D.C. 80989", jurisdiction: "United States of America", active_cases: 312, is_federal: true)
 nasa = Department.create!(name: 'National Aeronautics and Space Administration', address: "0101 Milky Way, Houston, TX 70351", jurisdiction: "United States of America", active_cases: 3, is_federal: true, created_at: "1953-12-25 11:25:00 UTC")
 
-fbi.investigations.create!(subject: 'Missing Person', uid: "abalke83792ks1001", active: true, active_leads: 345)
-fbi.investigations.create!(subject: 'Wanted Fugitive', uid: "abalke83792ky78991", active: true, active_leads: 524)
+fbi.investigations.create!(subject: 'Missing Person', uid: "abalke83792ks1031", active: true, active_leads: 345)
+fbi.investigations.create!(subject: 'Wanted Fugitive', uid: "abalke83792ky782431", active: true, active_leads: 524)
 
-upd.investigations.create!(subject: 'Robbery', uid: "updlke83792ks1001", active: true, active_leads: 2301)
-upd.investigations.create!(subject: 'Assault', uid: "updlke83792ks10181", active: false, active_leads: 2301)
+upd.investigations.create!(subject: 'Robbery', uid: "updlke83792ks19902", active: true, active_leads: 2301)
+upd.investigations.create!(subject: 'Assault', uid: "updlke83792ks10280", active: false, active_leads: 2301)
 
-doj.investigations.create!(subject: 'Cyber Crimes', uid: "dojlke83792ks1001", active: true, active_leads: 940)
-doj.investigations.create!(subject: 'Domestic Terorism', uid: "dojlke83792ka1501", active: true, active_leads: 240)
+doj.investigations.create!(subject: 'Cyber Crimes', uid: "dojlke83792ks13989", active: true, active_leads: 940)
+doj.investigations.create!(subject: 'Domestic Terorism', uid: "dojlke83792ka2462", active: true, active_leads: 240)
 
-atf.investigations.create!(subject: 'Rape, Falure to appear, Firearms violations', uid: "atflke83792ks1001", active: true, active_leads: 540)
+atf.investigations.create!(subject: 'Rape, Falure to appear, Firearms violations', uid: "atflke83792ks1329", active: true, active_leads: 540)
 atf.investigations.create!(subject: 'Felon in Possession of a Firearm', uid: "atflke83792ks1001", active: true, active_leads: 240)
 
 dea.investigations.create!(subject: 'Money Laundering', uid: "dealke83792ks1001", active: true, active_leads: 340)

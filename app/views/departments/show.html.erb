@@ -23,7 +23,7 @@
       <tr>
         <td scope="row"><%= @department.address %></td>
         <td><%= @department.jurisdiction %></td>
-        <td><%= link_to "#{@department.active_cases}", department_cases_path %></td>
+        <td><%= link_to "#{@num_cases}", department_cases_path %></td>
         <td><%= @department.is_federal %></td>
         <td><%= @department.created_at %></td>
         <td><%= button_to 'Edit', edit_department_path(@department) %></td>
