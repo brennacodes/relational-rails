@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "departments index page", type: :feature do
+RSpec.describe "departments new page", type: :feature do
 
   before do
     visit "/departments/new"

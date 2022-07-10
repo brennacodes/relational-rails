@@ -22,7 +22,7 @@ class DepartmentsController < ApplicationController
   def create
     @department = Department.new(department_params)
       if @department.save
-        redirect_to "/departments"
+        redirect_to departments_url
       else
         render :new, status: :unprocessable_entity 
       end
@@ -31,7 +31,7 @@ class DepartmentsController < ApplicationController
   def update
     @department = Department.find(params[:id])
       if @department.update(department_params)
-        redirect_to departments_url
+        redirect_to department_url
       else
         render :edit, status: :unprocessable_entity
       end
