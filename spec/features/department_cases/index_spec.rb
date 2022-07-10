@@ -42,12 +42,27 @@ RSpec.describe "investigations index page", type: :feature do
     end
   end
 
-  describe 'page features' do
+  describe 'page' do
     it 'only shows investigations for a specific department' do
       expect(page).to have_content(@case_1.subject)
       expect(page).to have_content(@case_1.uid)
       expect(page).not_to have_content(@case_2.subject)
       expect(page).not_to have_content(@case_2.uid)
+    end
+
+    it 'has a link to the show page for each investigation' do
+      expect(page).to have_link(@case_1.subject, href: "/investigations/#{@case_1.id}")
+      expect(page).not_to have_link(@case_2.subject, href: "/investigations/#{@case_2.id}")
+    end
+
+    it 'has a link to add a new investigation for this department' do
+      expect(page).to have_link('New Investigation', href: "/departments/#{@fbi.id}/investigations/new")
+    end
+
+    it 'can add a new investigation for this department' do
+      expect(page).to have_link('New Investigation', href: "/departments/#{@fbi.id}/investigations/new")
+      click_on 'New Investigation'
+      expect(current_path).to eq("/departments/#{@fbi.id}/investigations/new")
     end
   end
 end
