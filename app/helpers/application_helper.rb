@@ -8,11 +8,11 @@ module ApplicationHelper
 
   def arrow
     if params[:direction] == 'asc'
-        image_tag("caret-up-fill.svg", alt: "up arrow", size: "15x15")
+        image_tag("caret-up.png", alt: "up arrow", size: "15x15")
     elsif params[:direction] == 'desc'
-        image_tag("caret-down-fill.svg", alt: "down arrow", size: "15x15")
+        image_tag("caret-down.png", alt: "down arrow", size: "15x15")
     else
         # either a blank image to show or just force no-display of image
     end
-end
+  end
 end
