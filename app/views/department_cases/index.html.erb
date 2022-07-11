@@ -1,6 +1,12 @@
 <h1 align="center">All Active Investigations: <%= @department.name %></h1>
 
 <div class="container">
+  <%= form_with url: "/search", method: :get do |form| %>
+    <p>Only show cases with more than <%= form.search_field :active_leads %> active leads <%= form.submit "Search" %></p>
+  <% end %>
+</div>
+
+<div class="container">
   <table class="table table-sm table-hover">
     <thead>
       <tr>

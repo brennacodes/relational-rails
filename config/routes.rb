@@ -22,5 +22,7 @@ Rails.application.routes.draw do
   put '/investigations/:id', to: 'investigations#update'
   delete '/investigations/:id', to: 'investigations#destroy', as: 'delete_investigation'
 
+  get '/search', to: 'department_cases#index', as: 'department_caes_search'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

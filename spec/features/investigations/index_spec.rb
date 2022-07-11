@@ -51,4 +51,10 @@ RSpec.describe "investigations index page", type: :feature do
     click_on 'Edit', match: :first
     expect(current_path).to eql("/investigations/#{@case_1.id}/edit")
   end
+
+  it "has a link to delete the investigation" do
+    expect(page).to have_button('Delete')
+    click_on 'Delete', match: :first
+    expect(current_path).to eql("/investigations")
+  end
 end
