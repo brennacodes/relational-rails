@@ -39,6 +39,8 @@ RSpec.describe Investigation, type: :model do
   describe "class methods" do
     describe "sort by" do
       it "should sort investigations by created_at with newest first" do
+        sorted = Investigation.sort_created_descend
+        expect(sorted.first).to eq(@case_2)
         expect(Investigation.sort_created_descend).to eq([@case_2, @case_1])
         expect(Investigation.sort_created_descend).not_to eq([@case_1, @case_2])
       end

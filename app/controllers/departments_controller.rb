@@ -1,8 +1,9 @@
 class DepartmentsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_action :set_department, only: %i[ show edit update destroy ]
 
   def index
-    @departments = Department.sort_created_descend
+    @departments = Department.order(sort_column + ' ' + sort_direction)
   end
 
   def show
@@ -43,6 +44,13 @@ class DepartmentsController < ApplicationController
   end
 
   private
+    def sort_column
+      Department.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_department
       @department = Department.find(params[:id])
