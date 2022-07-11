@@ -69,4 +69,13 @@ RSpec.describe "departments index page", type: :feature do
     click_on 'New Department'
     expect(current_path).to eq('/departments/new')
   end
+
+  it "has a link to edit a department" do
+    expect(page).to have_link('Edit')
+  end
+
+  it "opens a edit department page" do
+    click_on 'Edit', match: :first
+    expect(current_path).to eq("/departments/#{@department_2.id}/edit")
+  end
 end
