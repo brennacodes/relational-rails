@@ -80,5 +80,4 @@ RSpec.describe "departments show page", type: :feature do
     expect(page).not_to have_content('Robbery')
   end
 
-
 end

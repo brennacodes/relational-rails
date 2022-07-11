@@ -73,4 +73,11 @@ RSpec.describe "investigations show page", type: :feature do
     expect(current_path).to eq(investigation_path(@case_1.id))
     # expect(page).to have_content("Felony Assault with Hot Dog")
   end
+
+  it "has a link to delete the investigation" do
+    expect(page).to have_link('Delete')
+    click_on 'Delete'
+    expect(current_path).to eq("/investigations")
+    expect(page).not_to have_content('Missing Person')
+  end
 end
