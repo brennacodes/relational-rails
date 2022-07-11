@@ -70,4 +70,15 @@ RSpec.describe "departments show page", type: :feature do
     expect(page).to have_content(" 2 ")
   end
 
+  it "has a link to delete the department" do
+    expect(page).to have_button('Delete')
+    click_button 'Delete', match: :first
+    expect(current_path).to eq("/departments")
+    expect(page).not_to have_content('Federal Bureau of Investigations')
+    visit '/investigations'
+    expect(page).not_to have_content('Missing Person')
+    expect(page).not_to have_content('Robbery')
+  end
+
+
 end
