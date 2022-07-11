@@ -45,4 +45,10 @@ RSpec.describe "investigations index page", type: :feature do
     ordered = Investigation.sort_created_descend
     expect(ordered).to eq([@case_2, @case_1])
   end
+
+  it "has a link to edit the investigation" do
+    expect(page).to have_button('Edit')
+    click_on 'Edit', match: :first
+    expect(current_path).to eql("/investigations/#{@case_1.id}/edit")
+  end
 end
