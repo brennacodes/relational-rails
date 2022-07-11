@@ -5,12 +5,35 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', 'developer_added', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-expand-sm bg-light navbar-light-hover-color">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Wetective</a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="<%= departments_path %>">Departments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= investigations_path %>">Investigations</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+  </nav>
+
+  <div class="container">
+     <%= yield %>
+  </div>
+  
   </body>
 </html>

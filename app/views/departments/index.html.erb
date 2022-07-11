@@ -1,14 +1,10 @@
-<%= render 'navbar' %>
-
-<p id="notice"><%= notice %></p>
-
 <h1 align="center">Departments</h1>
 
 <div class="container">
 <table class="table table-sm table-hover">
   <thead>
     <tr>
-      <th scope="col"><%= sortable "name" %></th>
+      <th scope="col" id="pretty"><%= sortable "name" %></th>
       <th scope="col"><%= sortable "address" %></th>
       <th scope="col"><%= sortable "jurisdiction" %></th>
       <th scope="col"><%= sortable "active_cases" %></th>
@@ -29,7 +25,7 @@
         <td><%= department.num_cases %></td>
         <td><%= department.is_federal %></td>
         <td><%= department.created_at %></td>
-        <td><a href="<%= edit_department_path(department.id) %>" type="button" class="btn btn-outline-primary" >Edit</a></td>
+        <td><a href="<%= edit_department_path(department.id) %>" type="button" class="btn btn-outline-primary btn-sm" >Edit</a></td>
         <td><%= button_to 'Delete', department_path(department), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
