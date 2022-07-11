@@ -68,6 +68,21 @@ RSpec.describe "departments show page", type: :feature do
 
   it "lists the number of active cases" do
     expect(page).to have_content(" 2 ")
+    expect(page).to have_content(@num_cases)
+  end
+
+  it "only shows department with selected id" do
+    visit '/departments'
+    click_on 'Federal Bureau of Investigations'
+    expect(current_path).to eq("/departments/#{fbi.id}")
+  end
+
+  it "can pull investigations for selected department id" do
+    click_on 'View All Cases'
+    expect(current_path).to eq("/departments/#{fbi.id}/investigations")
+    @investigations = Investigation.where({'department_id' => fbi.id})
+    count = @investigations.count
+    expect(count).to eq(2)
   end
 
   it "has a link to delete the department" do
