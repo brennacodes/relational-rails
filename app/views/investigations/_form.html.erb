@@ -57,19 +57,20 @@
       </div>
     <% end %>
   </div>
-        <div class="container">
-          <div class="row g-5">
-              <div class="col" align="left">
-                  <%= form.button "Save", type: :save, class: "btn btn-primary" %>
-              </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col">
+          <%= form.button "Save", type: :save, class: "btn btn-primary" %>
+      </div>
 
-              <div class="col" align="center">
-                <%= form.button :cancel, type: "reset", class: "btn btn-outline-secondary" %>
-              </div>
+      <div class="col">
+        <%= form.button :cancel, type: "reset", class: "btn btn-outline-secondary" %>
+      </div>
 
-              <div class="col" align="right">
-                  <%= link_to "Go Back", :back, { class: "btn btn-outline-primary"} %>
-              </div>
-          </div>
-        </div>
+      <div class="col">
+          <%= link_to "Go Back", :back, { class: "btn btn-outline-primary"} %>
+      </div>
+    </div>
+  </div>
 <% end %>
