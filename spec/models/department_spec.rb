@@ -17,8 +17,6 @@ RSpec.describe Department, type: :model do
     it { should have_db_column(:created_at).of_type(:datetime) }
   end
 
-  describe ''
-  
   it "can see all departments listed by date created" do
     @department_1 = Department.create!(name: "Federal Bureau of Investigations",
       address: "123 Wanted Way, Washington D.C. 01020",
