@@ -26,7 +26,7 @@ RSpec.describe Department, type: :model do
       active_cases: 122,
       is_federal: true,
       created_at: "1997-01-01 00:00:00 UTC")
-      ordered = Department.sort_created_descend
+      ordered = Department.order(created_at: :desc)
       expect(ordered).to eq([@department_2, @department_1])
   end
 end

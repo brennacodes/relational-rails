@@ -7,6 +7,7 @@ class InvestigationsController < ApplicationController
   end
 
   def show
+    @investigation = Investigation.find(params[:id])
   end
 
   def new
@@ -19,17 +20,19 @@ class InvestigationsController < ApplicationController
   
   def create
     @investigation = Investigation.new(investigation_params)
-    @department_names = Department.pluck(:name)
+    @department = Department.find(@investigation.department_id)
+    @investigation = @department.investigations.new(investigation_params)
       if @investigation.save
-        redirect_to investigation_url(@investigation)
+        redirect_to department_cases_path(@department)
       else
         render :new, status: :unprocessable_entity 
       end
   end
 
   def update
+    @investigation = Investigation.find(params[:id])
     if @investigation.update(investigation_params)
-      redirect_to investigation_url
+      redirect_to investigations_url
     else
       render :edit, status: :unprocessable_entity 
     end

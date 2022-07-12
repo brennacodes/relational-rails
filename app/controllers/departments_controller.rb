@@ -8,8 +8,7 @@ class DepartmentsController < ApplicationController
 
   def show
     @department = Department.find(params[:id])
-    @investigations = Investigation.where({'department_id' => @department.id})
-    @num_cases = @investigations.count
+    @num_cases = @department.investigations.count
   end
 
   def new
@@ -23,7 +22,7 @@ class DepartmentsController < ApplicationController
   def create
     @department = Department.new(department_params)
       if @department.save
-        redirect_to "/departments"
+        redirect_to departments_url
       else
         render :new, status: :unprocessable_entity 
       end
@@ -40,24 +39,27 @@ class DepartmentsController < ApplicationController
   def destroy
     @department = Department.find(params[:id])
     @department.destroy
-    redirect_to departments_url, notice: "Department was successfully destroyed." 
+    redirect_to departments_url
   end
 
   private
     def sort_column
-      Department.column_names.include?(params[:sort]) ? params[:sort] : "name"
+      # If a sort parameter is given, use it. Otherwise, default to created_at column.
+      Department.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
     end
     
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+      # If a sort direction parameter is given, use it. Otherwise, default to descending (created_at).
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "desc"
     end
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_department
+      # Use callbacks to share common setup or constraints between actions.
       @department = Department.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def department_params
+      # Only allow a list of trusted parameters through.
       params.require(:department).permit(:name, :address, :jurisdiction, :active_cases, :is_federal)
     end
 end

@@ -36,11 +36,11 @@ RSpec.describe "edit department page", type: :feature do
   describe "it can edit a department" do
     it 'has a button on the parent page to edit a department' do
       visit "/departments"
-      expect(page).to have_link('Edit')
-      click_on 'Edit', match: :first
-      expect(current_path).to eq("/departments/#{@department_2.id}/edit")
       department = Department.find(@department_2.id)
       expect(department).to eq(@department_2)
+      expect(page).to have_link('Edit')
+      click_on 'Edit', match: :first
+      expect(current_path).to eq("/departments/#{department.id}/edit")
     end
 
     it "renders an edit department form" do
@@ -62,10 +62,10 @@ RSpec.describe "edit department page", type: :feature do
       fill_in 'department[jurisdiction]', with: "United States of America"
       fill_in 'department[active_cases]', with: 0
       select 'False', from: 'department_is_federal'
+      save_and_open_page
       click_on 'Save'
-      # visit "/departments/#{@department_2.id}"
-      expect(current_path).to eq("/departments/#{@department_2.id}")
-      # expect(page).to have_content("Secret Service")
+      visit "/departments/#{@department_2.id}"
+      expect(page).to have_content("Secret Service")
     end
   end
 end

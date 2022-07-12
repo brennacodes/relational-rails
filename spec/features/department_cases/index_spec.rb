@@ -85,8 +85,8 @@ RSpec.describe "investigations index page", type: :feature do
       fill_in 'investigation[uid]', with: "abcd1234"
       fill_in 'investigation[active_leads]', with: 0
       select 'False', from: 'investigation[active]'
-      click_on 'submit'
-      expect(current_path).to eq("/departments/#{@fbi.id}/investigations")
+      click_on 'Save'
+      expect(current_path).to eq(department_cases_path(@fbi))
       expect(page).to have_content("Felony Assautl with Hot Dog")
     end
   end
