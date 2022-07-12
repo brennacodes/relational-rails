@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post '/investigations', to: 'investigations#create'                   
   get '/investigations/new', to: 'investigations#new', as: 'new_investigation'
   get '/investigations/:id/edit', to: 'investigations#edit', as: 'edit_investigation'
+  post '/investigations/:id/edit', to: 'investigations#edit'
   get '/investigations/:id', to: 'investigations#show', as: 'investigation'
   patch '/investigations/:id', to: 'investigations#update'
   put '/investigations/:id', to: 'investigations#update'
