@@ -14,3 +14,16 @@
  *= require_self
  */
   @import 'bootstrap';
+
+  .selected th .current {
+    padding-right: 12px;
+    background-repeat: no-repeat;
+    background-position: right center;
+  }
+  .selected th .asc { 
+    background-image: image_url('caret-up-fill.svg'); 
+  }
+  
+  .selected th .desc { 
+    background-image: image_url('caret-up-fill.svg'); 
+  }

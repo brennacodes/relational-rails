@@ -27,7 +27,7 @@ class DepartmentCasesController < ApplicationController
 
   private
     def sort_column
-      Department.column_names.include?(params[:sort]) ? params[:sort] : "name"
+      Investigation.column_names.include?(params[:sort]) ? params[:sort] : "subject"
     end
     
     def sort_direction

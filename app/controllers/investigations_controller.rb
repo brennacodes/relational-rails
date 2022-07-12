@@ -1,14 +1,13 @@
 class InvestigationsController < ApplicationController
-  helper_method :sort_column, :sort_direction
   before_action :set_investigation, only: %i[ show edit update destroy ]
+  helper_method :sort_column, :sort_direction
 
   def index
-    @investigations = Investigation.show_true.order(sort_column + ' ' + sort_direction)
+    @investigations = Investigation.show_true.order(sort_column + " " + sort_direction)
   end
 
   def show
   end
-
 
   def new
     @investigation = Investigation.new
@@ -29,12 +28,11 @@ class InvestigationsController < ApplicationController
   end
 
   def update
-    @investigation = Investigation.find(params[:id])
-      if @investigation.update(investigation_params)
-        redirect_to investigation_url
-      else
-        render :edit, status: :unprocessable_entity 
-      end
+    if @investigation.update(investigation_params)
+      redirect_to investigation_url
+    else
+      render :edit, status: :unprocessable_entity 
+    end
   end
 
   def destroy
@@ -56,7 +54,6 @@ class InvestigationsController < ApplicationController
       @investigation = Investigation.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def investigation_params
       params.require(:investigation).permit(:subject, :uid, :active, :active_leads, :department_id)
     end

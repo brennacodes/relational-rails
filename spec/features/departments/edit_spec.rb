@@ -39,6 +39,8 @@ RSpec.describe "edit department page", type: :feature do
       expect(page).to have_link('Edit')
       click_on 'Edit', match: :first
       expect(current_path).to eq("/departments/#{@department_2.id}/edit")
+      department = Department.find(@department_2.id)
+      expect(department).to eq(@department_2)
     end
 
     it "renders an edit department form" do
@@ -51,16 +53,19 @@ RSpec.describe "edit department page", type: :feature do
       select 'False', from: 'department_is_federal'
     end
 
-    it "successfully creates a new department" do
+    it "successfully edits a new department" do
       visit "/departments"
       click_on 'Edit', match: :first
+      expect(current_path).to eq("/departments/#{@department_2.id}/edit")
       fill_in 'department[name]', with: "Secret Service"
       fill_in 'department[address]', with: "010 Federal Way, Washington D.C. 80989"
       fill_in 'department[jurisdiction]', with: "United States of America"
       fill_in 'department[active_cases]', with: 0
       select 'False', from: 'department_is_federal'
       click_on 'Save'
-      expect(current_path).to eq("/departments/#{@department_1.id}")
+      # visit "/departments/#{@department_2.id}"
+      expect(current_path).to eq("/departments/#{@department_2.id}")
+      # expect(page).to have_content("Secret Service")
     end
   end
 end

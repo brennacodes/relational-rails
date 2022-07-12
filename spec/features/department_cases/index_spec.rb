@@ -79,7 +79,7 @@ RSpec.describe "investigations index page", type: :feature do
       select 'False', from: 'investigation[active]'
     end
 
-    it "renders a new investigation form" do
+    it "creates a new investigation" do
       click_on 'New Investigation'
       fill_in 'investigation[subject]', with: "Felony Assautl with Hot Dog"
       fill_in 'investigation[uid]', with: "abcd1234"
