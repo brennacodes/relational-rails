@@ -39,7 +39,7 @@ RSpec.describe "edit department page", type: :feature do
       department = Department.find(@department_2.id)
       expect(department).to eq(@department_2)
       expect(page).to have_link('Edit')
-      click_on 'Edit', match: :first
+      click_link 'Edit', match: :first
       expect(current_path).to eq("/departments/#{department.id}/edit")
     end
 
