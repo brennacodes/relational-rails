@@ -85,6 +85,12 @@ RSpec.describe "departments show page", type: :feature do
     expect(count).to eq(2)
   end
 
+  it "has a link to edit the department" do
+    save_and_open_page
+    click_link 'Edit'
+    expect(current_path).to eql("/departments/#{fbi.id}/edit")
+  end
+
   it "has a link to delete the department" do
     expect(page).to have_button('Delete')
     click_button 'Delete', match: :first
@@ -93,6 +99,6 @@ RSpec.describe "departments show page", type: :feature do
     visit '/investigations'
     expect(page).not_to have_content('Missing Person')
     expect(page).not_to have_content('Robbery')
+    expect(Department.exists?(fbi.id)).to eq(false)
   end
-
 end

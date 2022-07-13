@@ -22,7 +22,7 @@
         <td><%= link_to "#{@num_cases}", department_cases_path %></td>
         <td><%= @department.is_federal %></td>
         <td><%= @department.created_at %></td>
-        <td><%= button_to 'Edit', edit_department_path(@department) %></td>
+        <td><a href="<%= edit_department_path(@department.id) %>" type="button" class="btn btn-outline-primary btn-sm" >Edit</a></td>
         <td><%= button_to 'Delete', department_path(@department), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   </tbody>
