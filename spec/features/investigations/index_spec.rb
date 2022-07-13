@@ -13,17 +13,17 @@ RSpec.describe "investigations index page", type: :feature do
   end
 
   it "can only see investigations that are active (true)" do
-    expect(page).to have_content(@case_1.subject)
-    expect(page).to have_content(@case_2.subject)
-    expect(page).to_not have_content(@case_3.subject)
-    expect(page).to have_content(@case_4.subject)
+    expect(page).to have_content("Missing Person")
+    expect(page).to have_content("Robbery")
+    expect(page).to_not have_content("Felony Assault with Hot Dog")
+    expect(page).to have_content("Armed Robbery")
   end
   
   it "can see date created for each investigation" do
-    expect(page).to have_content(@case_1.created_at)
-    expect(page).to have_content(@case_2.created_at)
-    expect(page).not_to have_content(@case_3.created_at)
-    expect(page).to have_content(@case_4.created_at)
+    expect(page).to have_content("1993-01-01 00:00:00 UTC")
+    expect(page).to have_content("1990-01-01 00:00:00 UTC")
+    expect(page).not_to have_content("2017-01-01")
+    expect(page).to have_content("1999-01-01 00:00:00 UTC")
   end
 
   it "can see all investigations listed by date created" do
@@ -34,11 +34,11 @@ RSpec.describe "investigations index page", type: :feature do
   end
 
   it "can click on a case to see more information" do
-    click_link(@case_1.subject)
-    expect(page).to have_content(@case_1.subject)
-    expect(page).to have_content(@case_1.uid)
-    expect(page).to have_content(@case_1.active)
-    expect(page).to have_content(@case_1.active_leads)
+    click_link("Missing Person")
+    expect(page).to have_content("Missing Person")
+    expect(page).to have_content("abalke83792ks1001")
+    expect(page).to have_content("true")
+    expect(page).to have_content("345")
   end
 
   it "has links to edit each investigation" do
@@ -52,48 +52,72 @@ RSpec.describe "investigations index page", type: :feature do
   end
 
   it "has a link to delete the investigation" do
-    expect(page).to have_content(@case_1.subject)
-    expect(page).to have_content(@case_2.subject)
-    expect(page).to have_content(@case_4.subject)
-    expect(page).not_to have_content(@case_3.subject)
+    expect(page).to have_content("Missing Person")
+    expect(page).to have_content("Robbery")
+    expect(page).to have_content("Armed Robbery")
+    expect(page).not_to have_content("Felony Assault with Hot Dog")
     expect(page).to have_button('Delete')
     click_on 'Delete', match: :first
     expect(current_path).to eql("/investigations")  
-    expect(page).to have_content(@case_1.subject)
-    expect(page).to have_content(@case_2.subject)
-    expect(page).not_to have_content(@case_4.subject)
-    expect(page).not_to have_content(@case_3.subject)
+    expect(page).to have_content("Missing Person")
+    expect(page).to have_content("Robbery")
+    expect(page).not_to have_content("Armed Robbery")
+    expect(page).not_to have_content("Felony Assault with Hot Dog")
     click_on 'Delete', match: :first
     expect(current_path).to eql("/investigations")
-    expect(page).to have_content(@case_2.subject)
-    expect(page).not_to have_content(@case_1.subject)
-    expect(page).not_to have_content(@case_4.subject)
-    expect(page).not_to have_content(@case_3.subject)
+    expect(page).to have_content("Robbery")
+    expect(page).not_to have_content("Missing Person")
+    expect(page).not_to have_content("Armed Robbery")
+    expect(page).not_to have_content("Felony Assault with Hot Dog")
   end
 
   it "can sort by any column" do
     expect(page).to have_selector(:link_or_button, "Subject")
-    expect(page.all('td')[0].text).to eq("Armed Robbery")
-    click_on "Subject"
-    expect(page.all('td')[0].text).to eq("Robbery")
+    within('tbody') do
+      expect(page.all('td')[0].text).to eq("Armed Robbery")
+    end
+    within('thead') do
+      click_on "Subject"
+    end
+    within('tbody') do
+      expect(page.all('td')[0].text).to eq("Robbery")
+    end
 
     visit "/investigations"
     expect(page).to have_selector(:link_or_button, "UID")
-    expect(page.all('td')[1].text).to eq("zqiupaoe28987304")
-    click_on "UID"
-    expect(page.all('td')[1].text).to eq("ab132w5azef543214533")
-    
+    within('tbody') do
+      expect(page.all('td')[1].text).to eq("zqiupaoe28987304")
+    end
+    within('thead') do
+      click_on "UID"
+    end
+    within('tbody') do
+      expect(page.all('td')[1].text).to eq("ab132w5azef543214533")
+    end
+
     visit "/investigations"
     expect(page).to have_selector(:link_or_button, "Active Leads")
-    expect(page.all('td')[3].text).to eq("33")
-    click_on "Active Leads"
-    expect(page.all('td')[3].text).to eq("1")
-    
+    within('tbody') do
+      expect(page.all('td')[3].text).to eq("33")
+    end
+    within('thead') do
+      click_on "Active Leads"
+    end
+    within('tbody') do
+      expect(page.all('td')[3].text).to eq("1")
+    end
+
     visit "/investigations"
     expect(page).to have_selector(:link_or_button, "Department")
-    expect(page.all('td')[4].text).to eq("United States Parole Department")
-    click_on "Department"
-    expect(page.all('td')[4].text).to eq("Federal Bureau of Investigations")
+    within('tbody') do
+      expect(page.all('td')[4].text).to eq("United States Parole Department")
+    end
+    within('thead') do
+      click_on "Department"
+    end
+    within('tbody') do
+      expect(page.all('td')[4].text).to eq("Federal Bureau of Investigations")
+    end
   end
 end
 
