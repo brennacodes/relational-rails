@@ -1,6 +1,6 @@
 module ApplicationHelper
   def sortable(column, title = nil)
-    # either use the given title or make the title the column name
+    # either use the page title or make the title the column name
     title ||= column.titleize
     # if a column is being sorted as ascending, change the direction to descending, otherwise set the default direction to ascending
     direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
