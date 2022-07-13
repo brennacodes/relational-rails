@@ -14,6 +14,7 @@ class InvestigationsController < ApplicationController
   end
 
   def new
+    @investigation = Investigation.new
   end
   
   def edit
