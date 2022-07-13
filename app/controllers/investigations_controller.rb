@@ -11,7 +11,6 @@ class InvestigationsController < ApplicationController
   end
 
   def new
-    @investigation = Investigation.new
   end
   
   def edit
@@ -41,7 +40,7 @@ class InvestigationsController < ApplicationController
   def destroy
     @investigation = Investigation.find(params[:id])
     @investigation.destroy
-    redirect_to investigations_path, notice: "Case was successfully destroyed." 
+    redirect_to investigations_path
   end
 
   private

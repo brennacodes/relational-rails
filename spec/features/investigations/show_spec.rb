@@ -2,19 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "investigations show page", type: :feature do
   before do
-    @fbi = Department.create!(name: 'Federal Bureau of Investigations', 
-                                 address: "010 Federal Way, Washington D.C. 80989", 
-                                 jurisdiction: "United States of America", 
-                                 active_cases: 964, 
-                                 is_federal: true)  
-    @case_1 = @fbi.investigations.create!(subject: 'Missing Person', 
-                                          uid: "fbilke83792ks1001", 
-                                          active: true, 
-                                          active_leads: 345)    
-    @case_2 = @fbi.investigations.create!(subject: 'Robbery',
-                                          uid: "fb132w5azef543214533",  
-                                          active: true,
-                                          active_leads: 1)
+    @fbi = Department.create!(name: 'Federal Bureau of Investigations', address: "010 Federal Way, Washington D.C. 80989", jurisdiction: "United States of America", active_cases: 964, is_federal: true)
+    @upd = Department.create!(name: 'United States Parole Department', address: "123 Main St., Washington D.C. 12893", jurisdiction: "municipal", active_cases: 4, is_federal: false)
+    @case_1 = @fbi.investigations.create!(subject: 'Missing Person', uid: "abalke83792ks1001", active: true, active_leads: 345)
+    @case_2 = @fbi.investigations.create!(subject: 'Robbery', uid: "ab132w5azef543214533", active: true, active_leads: 1)
+    @case_3 = @upd.investigations.create!(subject: 'Armed Robbery', uid: "zqiupaoe28987304", active: true, active_leads: 33)
     visit "/investigations/#{@case_1.id}"
   end
   
@@ -38,32 +30,28 @@ RSpec.describe "investigations show page", type: :feature do
     expect(page).to have_content(@case_1.active)
     expect(page).to have_content(@case_1.active_leads)
     expect(page).to have_content(@fbi.name)
-    expect(page).not_to have_content("Wanted Fugitive")
-    expect(page).not_to have_content("fbialke83792ks1188")
+    expect(page).not_to have_content(@case_2.subject)
+    expect(page).not_to have_content(@upd.name)
+    expect(page).not_to have_content(@case_3.subject)
   end
 
-  it "has a link to the edit page for this investigation" do
+  it "has a link to edit the investigation" do
+    expect(page).to have_content(@case_1.subject)
     expect(page).to have_link('Update Investigation')
-  end
-
-  it "has an edit button takes user to edit page for that case" do
-    expect(page).to have_link('Update Investigation')
-    click_on 'Update Investigation', match: :first
+    expect(page).to have_selector(:link_or_button, "Update Investigation")
+    click_on "Update Investigation"
     expect(current_path).to eq(edit_investigation_path(@case_1))
-    # expect(current_path).to eq("/investigations/#{@case_1.id}/edit")
   end
   
-  it "takes the user to a form to edit an investigation" do
-    expect(page).to have_link('Update Investigation')
-    click_on 'Update Investigation', match: :first
-    expect(current_path).to eq(edit_investigation_path(@case_1))
+  it "takes the user to a form to edit the investigation details" do
+    click_on 'Update Investigation'
     fill_in 'investigation[subject]', with: "Felony Assautl with Hot Dog"
     fill_in 'investigation[uid]', with: "abcd1234"
     fill_in 'investigation[active_leads]', with: 0
     select 'False', from: 'investigation[active]'
   end
   
-  it "takes the user to a form to edit an investigation" do
+  it "takes the user back to the updated investigation page" do
     click_on 'Update Investigation', match: :first
     expect(current_path).to eq("/investigations/#{@case_1.id}/edit")
     fill_in 'investigation[subject]', with: "Felony Assault with Hot Dog"
@@ -79,6 +67,6 @@ RSpec.describe "investigations show page", type: :feature do
     expect(page).to have_link('Delete')
     click_on 'Delete'
     expect(current_path).to eq("/investigations")
-    expect(page).not_to have_content('Missing Person')
+    expect(page).not_to have_content(@case_1.subject)
   end
 end
