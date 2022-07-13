@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get '/departments/:id/investigations', to: 'department_cases#index', as: 'department_cases'
   get '/departments/:id/investigations/new', to: 'department_cases#new', as: 'new_dept_investigation'
   post '/departments/:id/investigations', to: 'department_cases#create'
-  # get '/departments/:id/investigations', to: 'department_cases#show', as: 'show_department_cases'
 
   get '/investigations', to: 'investigations#index', as: 'investigations'
   post '/investigations', to: 'investigations#create'                   
@@ -24,6 +23,4 @@ Rails.application.routes.draw do
   post '/investigations/:id/edit', to: 'investigations#edit'
 
   get '/search', to: 'department_cases#index', as: 'department_caes_search'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

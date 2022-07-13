@@ -22,12 +22,12 @@ RSpec.describe 'it shows information on an department based on id' do
   end
 
   it 'can update an investigation record' do
-    fill_in 'investigation[subject]', with: "Felony Assault with Hot Dog"
-    fill_in 'investigation[uid]', with: "abcd1234"
-    fill_in 'investigation[active_leads]', with: 0
-    select 'False', from: 'investigation[active]'
+    fill_in 'subject', with: "Felony Assault with Hot Dog"
+    fill_in 'uid', with: "abcd1234"
+    fill_in 'active_leads', with: 0
+    select 'False', from: 'active'
 
-    click_button 'Submit'
+    click_button 'Save'
     expect(current_path).to eq(investigation_path(@case_1.id))
     expect(page).to have_content("Felony Assault with Hot Dog")
     expect(page).to have_content("abcd1234")

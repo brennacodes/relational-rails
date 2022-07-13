@@ -73,21 +73,22 @@ RSpec.describe "investigations index page", type: :feature do
 
     it "renders a new investigation form" do
       click_on 'New Investigation'
-      fill_in 'investigation[subject]', with: "Felony Assautl with Hot Dog"
-      fill_in 'investigation[uid]', with: "abcd1234"
-      fill_in 'investigation[active_leads]', with: 0
-      select 'False', from: 'investigation[active]'
+      fill_in 'Subject', with: "Felony Assautl with Hot Dog"
+      fill_in 'investigation_uid', with: "abcd1234"
+      fill_in 'investigation_active_leads', with: 0
+      select 'False', from: 'investigation_active'
     end
 
     it "creates a new investigation" do
       click_on 'New Investigation'
-      fill_in 'investigation[subject]', with: "Felony Assautl with Hot Dog"
+      fill_in 'investigation[subject]', with: "Felony Assault with Hot Dog"
       fill_in 'investigation[uid]', with: "abcd1234"
       fill_in 'investigation[active_leads]', with: 0
       select 'False', from: 'investigation[active]'
       click_on 'Save'
+      save_and_open_page
       expect(current_path).to eq(department_cases_path(@fbi))
-      expect(page).to have_content("Felony Assautl with Hot Dog")
+      expect(page).to have_content("Felony Assault with Hot Dog")
     end
   end
 end

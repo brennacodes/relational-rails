@@ -1,76 +1,42 @@
-<%= form_with model: investigation do |form| %>
-  <div class="container">
-    <div class="input-group">
-        <%= form.label :subject, { class: "input-group-text"  } %><br>
-        <%= form.text_field :subject, { class: "form-control", id: "text-input-area" } %></p>
+<%= form_with(model: case, local: true) do |form| %>
+  <% if case.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(case.errors.count, "error") %> prohibited this case from being saved:</h2>
+
+      <ul>
+      <% case.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
     </div>
+  <% end %>
 
-    <% @investigation.errors.full_messages_for(:subject).each do |message| %>
-      <div>
-        <%= message %>
-      </div>
-    <% end %>
-
-    <div class="input-group">
-        <%= form.label :uid, { class: "input-group-text" } %><br>
-        <%= form.text_area :uid, { class: "form-control", id: "text-input-area" } %></p>
-    </div>
-
-    <% @investigation.errors.full_messages_for(:uid).each do |message| %>
-      <div>
-        <%= message %>
-      </div>
-    <% end %>
-
-      <div class="input-group">
-          <%= form.label :department, { class: "input-group-text", for: "inputGroupSelect01" } %><br>
-          <div class="visually-hidden"><%= form.text_field :department, { class: "form-select", id: "inputGroupSelect01", value: @investigation.department_id } %> </div>
-          <%= form.select :department, @department_names, { class: "form-select", id: "inputGroupSelect01" } %>
- 
-      </div>
-
-    <% @investigation.errors.full_messages_for(:department).each do |message| %>
-      <div>
-        <%= message %>
-      </div>
-    <% end %>
-
-    <div class="input-group">
-        <%= form.label :active_leads, { class: "input-group-text" } %><br>
-        <%= form.text_field :active_leads, { class: "form-control", id: "text-input-area" } %></p>
-    </div>
-
-    <% @investigation.errors.full_messages_for(:active_leads).each do |message| %>
-      <div>
-        <%= message %>
-      </div>
-    <% end %>
-
-    <div class="input-group">
-      <label class="input-group-text" for="inputGroupSelect01">Active?</label>
-        <%= form.select :active, [["True", true], ["False", false]], { class: "form-select", id: "inputGroupSelect"} %>
-    </div>
-
-    <% @investigation.errors.full_messages_for(:active).each do |message| %>
-      <div>
-        <%= message %>
-      </div>
-    <% end %>
+  <div class="field">
+    <%= form.label :subject %>
+    <%= form.text_field :subject %>
   </div>
-  
-  <div class="container">
-    <div class="row">
-      <div class="col">
-          <%= form.button "Save", type: :save, class: "btn btn-primary" %>
-      </div>
 
-      <div class="col">
-        <%= form.button :cancel, type: "reset", class: "btn btn-outline-secondary" %>
-      </div>
-
-      <div class="col">
-          <%= link_to "Go Back", :back, { class: "btn btn-outline-primary"} %>
-      </div>
-    </div>
+  <div class="field">
+    <%= form.label :uid %>
+    <%= form.text_field :uid %>
   </div>
-<% end %>
+
+  <div class="field">
+    <%= form.label :active %>
+    <%= form.select :active, [["True", true], ["False", false]] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :active_leads %>
+    <%= form.number_field :active_leads %>
+  </div>
+
+  <div class="field">
+    <%= form.label :department_id %>
+    <%= form.text_field :department_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<%end%>
