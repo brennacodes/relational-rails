@@ -62,7 +62,6 @@ RSpec.describe "edit department page", type: :feature do
       fill_in 'department[jurisdiction]', with: "United States of America"
       fill_in 'department[active_cases]', with: 0
       select 'False', from: 'department_is_federal'
-      save_and_open_page
       click_on 'Save'
       visit "/departments/#{@department_2.id}"
       expect(page).to have_content("Secret Service")
