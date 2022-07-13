@@ -18,6 +18,7 @@ Were mostly in testing.
 - Strange behavior with capybara testing route redirects upon form submission (the localhost site does not have this issue)
 - Capybara not recognizing some update or creation of datatabase objects
 - Figuring out how to test an `application_helper` module method
+- Learning a few new Rails "reserved words" after having to rename a ton of stuff early on... like "case" 🥹
 
 **Short term goal**: to use the FBI Most Wanted api to populate ongoing open investigations that are seeking information from the public.  
 **Medium term goal**: to build out an api that can be used by departments to populate the Wetective database, and to receive tips from users.  
