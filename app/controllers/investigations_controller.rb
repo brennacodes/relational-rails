@@ -2,7 +2,11 @@ class InvestigationsController < ApplicationController
   before_action :set_investigation, only: %i[ show edit update destroy ]
 
   def index
-    @investigations = Investigation.show_true.order(sort_column + " " + sort_direction)
+    if params[:search_input]
+      @investigations = Investigation.search_investigations(params[:search_input]).order(sort_column + " " + sort_direction)
+    else
+      @investigations = Investigation.show_true.order(sort_column + " " + sort_direction)
+    end
   end
 
   def show

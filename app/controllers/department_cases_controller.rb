@@ -1,10 +1,11 @@
 class DepartmentCasesController < ApplicationController
   def index
-    @department = Department.find(params[:id])
-    if params[:num_leads]
-      @investigations = @department.investigations.num_leads(params[:num_leads])
+    if params[:search_input]
+      @department = Department.find(params[:id])
+      @investigations = @department.investigations.search_investigations(params[:search_input]).order(sort_column + " " + sort_direction)
     else
-      @investigations = @department.investigations.show_true
+      @department = Department.find(params[:id])
+      @investigations = @department.investigations.show_true.order(sort_column + " " + sort_direction)
     end
   end
 
@@ -15,5 +16,4 @@ class DepartmentCasesController < ApplicationController
 
   def edit
   end
-
 end

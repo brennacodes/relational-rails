@@ -2,7 +2,12 @@ class DepartmentsController < ApplicationController
   before_action :set_department, only: %i[ show edit update destroy ]
 
   def index
-    @departments = Department.order(sort_column + ' ' + sort_direction)
+    @departments = Department.search_departments(params[:search_input]).order(sort_column + " " + sort_direction)
+    if @departments.empty?
+      @departments = Department.all.order(sort_column + " " + sort_direction)
+    else
+      @departments
+    end
   end
 
   def show
@@ -45,4 +50,5 @@ class DepartmentsController < ApplicationController
       # Only allow a list of trusted parameters through.
       params.require(:department).permit(:name, :address, :jurisdiction, :active_cases, :is_federal)
     end
+
 end

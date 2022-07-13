@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def sortable(column, title = nil)
     # either use the given title or make the title the column name
     title ||= column.titleize
@@ -16,13 +15,5 @@ module ApplicationHelper
     end
     # create the link with the title, the column name, and the direction, note the css class for implementing an arrow indicating current sort column and direction
     link_to title + sort_arrow, {:sort => column, :direction => direction}
-  end
-
-  def search_all(search_term) 
-    if search_term.present?
-      @departments = Department.search_all(search_term)
-    else
-      @departments = Department.all
-    end
   end
 end
