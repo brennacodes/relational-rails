@@ -12,20 +12,6 @@ RSpec.describe "investigations index page", type: :feature do
     visit "/investigations"
   end
 
-  describe "Navbar Links" do
-    describe "Navigation should be available" do
-      it "should include links" do
-        page.should have_link('Departments')
-        page.should have_link('Investigations')
-      end
-
-      it "has links that point to the correct pages" do
-        expect(page).to have_link('Departments', href: '/departments')
-        expect(page).to have_link('Investigations', href: '/investigations')
-      end
-    end
-  end
-
   it "can only see investigations that are active (true)" do
     expect(page).to have_content(@case_1.subject)
     expect(page).to have_content(@case_2.subject)
@@ -65,17 +51,23 @@ RSpec.describe "investigations index page", type: :feature do
   end
 
   it "has a link to delete the investigation" do
+    expect(page).to have_content(@case_1.subject)
+    expect(page).to have_content(@case_2.subject)
+    expect(page).to have_content(@case_4.subject)
+    expect(page).not_to have_content(@case_3.subject)
     expect(page).to have_button('Delete')
     click_on 'Delete', match: :first
-    expect(current_path).to eql("/investigations")
+    expect(current_path).to eql("/investigations")  
     expect(page).to have_content(@case_1.subject)
     expect(page).to have_content(@case_2.subject)
     expect(page).not_to have_content(@case_4.subject)
+    expect(page).not_to have_content(@case_3.subject)
     click_on 'Delete', match: :first
     expect(current_path).to eql("/investigations")
-    expect(page).not_to have_content(@case_1.subject)
+    expect(page).to have_content(@case_1.subject)
+    expect(page).not_to have_content(@case_2.subject)
     expect(page).not_to have_content(@case_4.subject)
-    expect(page).to have_content(@case_2.subject)
+    expect(page).not_to have_content(@case_3.subject)
   end
 
   it "can sort by any column" do
@@ -104,3 +96,5 @@ RSpec.describe "investigations index page", type: :feature do
     expect(page.all('td')[4].text).to eq("United States Parole Department")
   end
 end
+
+# ----------------------------------------------------------------

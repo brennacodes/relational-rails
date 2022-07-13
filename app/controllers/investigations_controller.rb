@@ -1,6 +1,5 @@
 class InvestigationsController < ApplicationController
   before_action :set_investigation, only: %i[ show edit update destroy ]
-  helper_method :sort_column, :sort_direction
 
   def index
     @investigations = Investigation.show_true.order(sort_column + " " + sort_direction)
@@ -37,13 +36,6 @@ class InvestigationsController < ApplicationController
   end
 
   private
-    def sort_column
-      Investigation.column_names.include?(params[:sort]) ? params[:sort] : "subject"
-    end
-    
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-    end
     # Use callbacks to share common setup or constraints between actions.
     def set_investigation
       @investigation = Investigation.find(params[:id])
