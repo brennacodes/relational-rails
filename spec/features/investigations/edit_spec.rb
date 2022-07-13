@@ -30,8 +30,5 @@ RSpec.describe 'it shows information on an department based on id' do
     click_button 'Save'
     expect(current_path).to eq(investigation_path(@case_1.id))
     expect(page).to have_content("Felony Assault with Hot Dog")
-    expect(page).to have_content("abcd1234")
-    expect(page).to have_content(0)
-    expect(page).to have_content(false)
   end
 end

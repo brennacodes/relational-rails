@@ -86,7 +86,6 @@ RSpec.describe "investigations index page", type: :feature do
       fill_in 'investigation[active_leads]', with: 0
       select 'False', from: 'investigation[active]'
       click_on 'Save'
-      save_and_open_page
       expect(current_path).to eq(department_cases_path(@fbi))
       expect(page).to have_content("Felony Assault with Hot Dog")
     end

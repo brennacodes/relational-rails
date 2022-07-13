@@ -45,20 +45,20 @@ RSpec.describe "investigations show page", type: :feature do
   
   it "takes the user to a form to edit the investigation details" do
     click_on 'Update Investigation'
-    fill_in 'investigation[subject]', with: "Felony Assautl with Hot Dog"
-    fill_in 'investigation[uid]', with: "abcd1234"
-    fill_in 'investigation[active_leads]', with: 0
-    select 'False', from: 'investigation[active]'
+    fill_in 'Subject', with: "Felony Assault with Hot Dog"
+    fill_in 'Uid', with: "abcd1234"
+    fill_in 'Active leads', with: 0
+    select 'False', from: 'Active'
   end
   
   it "takes the user back to the updated investigation page" do
     click_on 'Update Investigation', match: :first
     expect(current_path).to eq("/investigations/#{@case_1.id}/edit")
-    fill_in 'investigation[subject]', with: "Felony Assault with Hot Dog"
-    fill_in 'investigation[uid]', with: "abcd1234"
-    fill_in 'investigation[active_leads]', with: 0
-    select 'False', from: 'investigation[active]'
-    click_button 'Submit'
+    fill_in 'Subject', with: "Felony Assault with Hot Dog"
+    fill_in 'Uid', with: "abcd1234"
+    fill_in 'Active leads', with: 0
+    select 'False', from: 'Active'
+    click_button 'Save'
     expect(current_path).to eq(investigation_path(@case_1.id))
     # expect(page).to have_content("Felony Assault with Hot Dog")
   end
