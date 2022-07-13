@@ -1,6 +1,6 @@
 <h1>Editing Case</h1>
 
-<%= form_with url: "/investigation/#{@investigation.id}", local: true do |form| %>
+<%= form_with url: investigation_url, local: true do |form| %>
     <% if @investigation.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@investigation.errors.count, "error") %> prohibited this case from being saved:</h2>

@@ -1,7 +1,11 @@
 class DepartmentCasesController < ApplicationController
   def index
     @department = Department.find(params[:id])
-    @investigations = Investigation.where(department_id: @department.id)
+    if params[:num_leads]
+      @investigations = @department.investigations.num_leads(params[:num_leads])
+    else
+      @investigations = @department.investigations.show_true
+    end
   end
 
   def new

@@ -95,7 +95,6 @@ RSpec.describe "departments index page", type: :feature do
     expect(current_path).to eq("/departments/#{@department_1.id}/edit")
   end
 
-
   it "has a link next to each department do delete that department" do
     expect(page).to have_button('Delete')
     click_on 'Delete', match: :first

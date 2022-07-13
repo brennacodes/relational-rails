@@ -1,8 +1,8 @@
 <h1 align="center">All Active Investigations: <%= @department.name %></h1>
 
 <div class="container">
-  <%= form_with url: "/search", method: :get do |form| %>
-    <p>Only show cases with more than <%= form.search_field :active_leads %> active leads <%= form.submit "Search" %></p>
+  <%= form_with url: department_cases_url, method: :get, local: true do |form| %>
+    <p>Only show cases with more than <%= form.search_field :num_leads %> active leads <%= form.submit "Search" %></p>
   <% end %>
 </div>
 

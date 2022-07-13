@@ -6,6 +6,13 @@ class Investigation < ApplicationRecord
   validates_associated :department
   validates :active, inclusion: { in: [true, false] }
 
+  scope :num_leads, -> (input) { where('active_leads > ?', input) }
+  scope :over_num_cases, -> (input) { where('investigations_count > ?', input) }
+  scope :named, -> (input) { where('name ILIKE ?', "#{ input }%")}
+  scope :named_like, -> { find("name = ?", input) }
+  scope :address_contails, -> (input) { where('address LIKE ?', "%#{input}%") }
+  scope :has_jurisdiction, -> { find("jurisdiction = ?", input) }
+
   def self.sort_created_descend
     order(:created_at).reverse_order
   end

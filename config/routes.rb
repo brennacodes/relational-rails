@@ -21,6 +21,4 @@ Rails.application.routes.draw do
   delete '/investigations/:id', to: 'investigations#destroy', as: 'delete_investigation'
   get '/investigations/:id/edit', to: 'investigations#edit', as: 'edit_investigation'
   post '/investigations/:id/edit', to: 'investigations#edit'
-
-  get '/search', to: 'department_cases#index', as: 'department_caes_search'
 end
