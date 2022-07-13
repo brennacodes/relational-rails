@@ -14,6 +14,10 @@ class Investigation < ApplicationRecord
     where(:active => true)
   end
 
+  def self.num_leads(input)
+    where('active_leads > ?', input)
+  end
+
   def self.search_investigations(input)
     if input.class == Integer
       where('active_leads = ?', input).or(where('uid ILIKE ?', "%#{input}%")).or(where('created_at ILIKE ?', "%#{input}%"))
