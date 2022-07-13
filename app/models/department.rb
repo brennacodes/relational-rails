@@ -10,9 +10,9 @@ class Department < ApplicationRecord
 
   def self.search_departments(input)
     if input.class == Integer
-      where('active_cases = ?', input).or(where('address ILIKE ?', "%#{input}%"))
+      where('active_cases = ?', input)
     else
-      where('name ILIKE ?', "%#{ input }%").or(where('address ILIKE ?', "%#{input}%")).or(where('jurisdiction ILIKE ?', "%#{input}%"))
+      where('name ILIKE ?', "%#{ input }%").or(where('address ILIKE ?', "%#{input}%")).or(where('jurisdiction ILIKE ?', "%#{input}%")).or(where('address ILIKE ?', "%#{input}%"))
     end
   end
 end
