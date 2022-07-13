@@ -86,7 +86,6 @@ RSpec.describe "departments show page", type: :feature do
   end
 
   it "has a link to edit the department" do
-    save_and_open_page
     click_link 'Edit'
     expect(current_path).to eql("/departments/#{fbi.id}/edit")
   end

@@ -21,20 +21,13 @@ class InvestigationsController < ApplicationController
     @investigation = Investigation.new(investigation_params)
     @department = Department.find(@investigation.department_id)
     @investigation = @department.investigations.new(investigation_params)
-      if @investigation.save
-        redirect_to department_cases_path(@department)
-      else
-        render :new, status: :unprocessable_entity 
-      end
+    redirect_to department_cases_path(@department)
   end
 
   def update
     @investigation = Investigation.find(params[:id])
-    if @investigation.update(investigation_params)
-      redirect_to investigations_url
-    else
-      render :edit, status: :unprocessable_entity 
-    end
+    @investigation.update(investigation_params)
+    redirect_to investigations_url
   end
 
   def destroy
