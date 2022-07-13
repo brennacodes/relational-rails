@@ -50,6 +50,13 @@ RSpec.describe Investigation, type: :model do
           expect(Investigation.show_true).to eq([@case_1])
         end
       end
+
+      describe "search" do
+        it "should return investigations that match the search term" do
+          expect(Investigation.search_investigations("miss")).to eq([@case_1])
+          expect(Investigation.search_investigations(3443)).to eq([@case_2])
+        end
+      end
     end
   end
 
