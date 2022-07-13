@@ -2,7 +2,7 @@
 
 <div class="container">
   <%= form_with url: department_cases_url, method: :get, local: true do |form| %>
-    <p>Only show cases with more than <%= form.search_field :num_leads %> active leads <%= form.submit "Search" %></p>
+    <p class="leads_input">Only show cases with more than <%= form.search_field :num_leads %> active leads <%= form.submit "Search" %></p>
   <% end %>
 </div>
 
@@ -13,7 +13,7 @@
         <th scope="col"><%= sortable "subject" %></th>
         <th scope="col"><%= sortable "uid", "UID" %></th>
         <th scope="col"><%= sortable "active" %></th>
-        <th scope="col"><%= sortable "active_leads" %></th>
+        <th scope="col"><%= sortable "active_leads", "Number of Leads" %></th>
         <th scope="col"><%= sortable "department_id", "Department" %></th>
         <th scope="col"><%= sortable "created_at", "Date Created" %></th>
         <th scope="col">Edit:</th>

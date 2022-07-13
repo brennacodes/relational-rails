@@ -17,11 +17,15 @@ RSpec.describe "investigations index page", type: :feature do
                               is_federal: false)
                               
     @case_1 = @fbi.investigations.create!(subject: 'Missing Person', 
-                                          uid: "abalke83792ks1001", 
+                                          uid: "fbilke83792ks1001", 
                                           active: true, 
                                           active_leads: 345)
+    @case_3 = @fbi.investigations.create!(subject: 'Wanted', 
+                                          uid: "fbilke8379312301", 
+                                          active: true, 
+                                          active_leads: 100)
     @case_2 = @upd.investigations.create!(subject: 'Robbery', 
-                                          uid: "ab132w5azef543214533", 
+                                          uid: "upd132w5azef543214533", 
                                           active: true, 
                                           active_leads: 1)
 
@@ -88,6 +92,19 @@ RSpec.describe "investigations index page", type: :feature do
       click_on 'Save'
       expect(current_path).to eq(department_cases_path(@fbi))
       expect(page).to have_content("Felony Assault with Hot Dog")
+    end
+
+    it "can filter investigations by number of leads" do
+      expect(page).to have_field('num_leads')
+      expect(page).to have_content(@case_1.subject)
+      expect(page).to have_content(@case_3.subject)
+      expect(page).not_to have_content(@case_2.subject)
+      fill_in 'num_leads', with: 200
+      within '.leads_input' do
+        click_button "Search"
+      end
+      expect(page).to have_content(@case_1.subject)
+      expect(page).not_to have_content(@case_3.subject)
     end
   end
 end

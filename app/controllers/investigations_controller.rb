@@ -26,7 +26,7 @@ class InvestigationsController < ApplicationController
   def update
     @investigation = Investigation.find(params[:id])
     @investigation.update(investigation_params)
-    redirect_to investigation_path(@investigation)
+    redirect_to investigation_url
   end
 
   def destroy

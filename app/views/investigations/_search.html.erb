@@ -1,0 +1,10 @@
+  <div class="d-flex" role="search">
+   <table>
+    <tr>
+      <%= form_with url: departments_url, method: :get, local: true do |form| %>
+        <td><%= form.search_field :search_input, { class: "form-control me-2", type: "search", placeholder: "Search", "aria-label"=>"Search" } %></td>
+        <td><%= form.submit "Search", { class: "btn btn-outline-success" } %></td>
+      <% end %>
+      </tr>
+    </table>
+  </div>
